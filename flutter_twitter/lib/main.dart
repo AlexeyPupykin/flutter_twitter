@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/presentation/bloc/person_list_cubit/person_list_cubit.dart';
 import 'package:flutter_twitter/features/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_twitter/locator_service.dart' as di;
@@ -26,8 +27,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData.dark().copyWith(
-          backgroundColor: Colors.black,
-          scaffoldBackgroundColor: Colors.grey,
+          backgroundColor: AppColors.mainBackground,
+          scaffoldBackgroundColor: AppColors.mainBackground,
         ),
         home: HomePage(),
       ),
