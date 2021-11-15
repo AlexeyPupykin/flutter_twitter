@@ -1,3 +1,4 @@
+import 'package:flutter_twitter/features/data/models/location_model.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
 import 'package:meta/meta.dart';
 
@@ -12,7 +13,7 @@ class PersonModel extends PersonEntity {
       @required origin,
       @required location,
       @required image,
-      @required episodes,
+      @required episode,
       @required created})
       : super(
             id: id,
@@ -24,7 +25,7 @@ class PersonModel extends PersonEntity {
             origin: origin,
             location: location,
             image: image,
-            episodes: episodes,
+            episode: episode,
             created: created);
 
   factory PersonModel.fromJson(Map<String, dynamic> json) {
@@ -35,12 +36,15 @@ class PersonModel extends PersonEntity {
         speceis: json['speceis'],
         type: json['type'],
         gender: json['gender'],
-        origin: json['origin']['name'],
-        location: json['location']['name'],
+        origin: json['origin'] != null
+            ? LocationModel.fromJson(json['origin'])
+            : null,
+        location: json['location'] != null
+            ? LocationModel.fromJson(json['location'])
+            : null,
         image: json['image'],
-        episodes: (json['episodes'] as List<dynamic>)
-            .map((e) => e as String)
-            .toList(),
+        episode:
+            (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
         created: DateTime.parse(json['created'] as String));
   }
 
@@ -55,7 +59,7 @@ class PersonModel extends PersonEntity {
       'origin': origin,
       'location': location,
       'image': image,
-      'episodes': episodes,
+      'episode': episode,
       'created': created!.toIso8601String()
     };
   }
