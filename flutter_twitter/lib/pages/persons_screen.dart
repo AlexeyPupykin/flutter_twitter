@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_twitter/widgets/persons_list_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -15,6 +16,7 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
+      body: PersonsList(),
     );
   }
 }

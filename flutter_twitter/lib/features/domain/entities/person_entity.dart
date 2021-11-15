@@ -3,27 +3,27 @@ import 'package:meta/meta.dart';
 
 class PersonEntity extends Equatable {
   final int? id;
-  final String? name;
+  final String name;
   final String? status;
   final String? speceis;
   final String? type;
   final String? gender;
   final LocationEntity? origin;
   final LocationEntity? location;
-  final String? image;
+  final String image;
   final List<String>? episode;
   final DateTime? created;
 
   PersonEntity(
       {@required this.id,
-      @required this.name,
+      required this.name,
       @required this.status,
       @required this.speceis,
       @required this.type,
       @required this.gender,
       @required this.origin,
       @required this.location,
-      @required this.image,
+      required this.image,
       @required this.episode,
       @required this.created});
 
