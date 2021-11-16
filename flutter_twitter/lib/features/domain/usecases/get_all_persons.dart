@@ -10,7 +10,6 @@ class GetAllPersons extends UseCase<List<PersonEntity>, PagePersonParams> {
 
   GetAllPersons(this.personRepository);
 
-  @override
   Future<Either<Failure, List<PersonEntity>>> call(
       PagePersonParams params) async {
     return await personRepository.getAllPersons(params.page);
@@ -20,8 +19,8 @@ class GetAllPersons extends UseCase<List<PersonEntity>, PagePersonParams> {
 class PagePersonParams extends Equatable {
   final int page;
 
-  const PagePersonParams({required this.page});
+  PagePersonParams({required this.page});
 
   @override
-  List<Object?> get props => [page];
+  List<Object> get props => [page];
 }

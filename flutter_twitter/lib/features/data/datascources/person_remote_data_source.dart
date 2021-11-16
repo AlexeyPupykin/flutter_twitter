@@ -17,10 +17,11 @@ abstract class PersonRemoteDataSource {
   Future<List<PersonModel>> searchPerson(String query);
 }
 
-class PersonRemoveDataSourceImpl implements PersonRemoteDataSource {
-  final http.Client? client;
+class PersonRemoteDataSourceImpl implements PersonRemoteDataSource {
+  final http.Client client;
 
-  PersonRemoveDataSourceImpl({@required this.client});
+  PersonRemoteDataSourceImpl({required this.client});
+
   @override
   Future<List<PersonModel>> getAllPersons(int page) => _getPersonFromUrl(
       'https://rickandmortyapi.com/api/character/?page=$page');
@@ -31,7 +32,7 @@ class PersonRemoveDataSourceImpl implements PersonRemoteDataSource {
 
   Future<List<PersonModel>> _getPersonFromUrl(String url) async {
     print(url);
-    final response = await client!
+    final response = await client
         .get(Uri.parse(url), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       final persons = json.decode(response.body);

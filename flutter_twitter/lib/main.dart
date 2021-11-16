@@ -6,8 +6,7 @@ import 'package:flutter_twitter/features/presentation/bloc/search_bloc/search_bl
 import 'package:flutter_twitter/locator_service.dart' as di;
 
 import 'locator_service.dart';
-// import 'pages/home_page.dart';
-import 'pages/persons_screen.dart';
+import 'features/presentation/pages/persons_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

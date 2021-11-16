@@ -3,49 +3,51 @@ import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
 import 'package:meta/meta.dart';
 
 class PersonModel extends PersonEntity {
-  PersonModel(
-      {@required id,
-      @required name,
-      @required status,
-      @required speceis,
-      @required type,
-      @required gender,
-      @required origin,
-      @required location,
-      @required image,
-      @required episode,
-      @required created})
-      : super(
-            id: id,
-            name: name,
-            status: status,
-            speceis: speceis,
-            type: type,
-            gender: gender,
-            origin: origin,
-            location: location,
-            image: image,
-            episode: episode,
-            created: created);
+  PersonModel({
+    @required id,
+    @required name,
+    @required status,
+    @required species,
+    @required type,
+    @required gender,
+    @required origin,
+    @required location,
+    @required image,
+    @required episode,
+    @required created,
+  }) : super(
+          id: id,
+          name: name,
+          status: status,
+          species: species,
+          type: type,
+          gender: gender,
+          origin: origin,
+          location: location,
+          image: image,
+          episode: episode,
+          created: created,
+        );
 
   factory PersonModel.fromJson(Map<String, dynamic> json) {
     return PersonModel(
-        id: json['id'],
-        name: json['name'],
-        status: json['status'],
-        speceis: json['speceis'],
-        type: json['type'],
-        gender: json['gender'],
-        origin: json['origin'] != null
-            ? LocationModel.fromJson(json['origin'])
-            : null,
-        location: json['location'] != null
-            ? LocationModel.fromJson(json['location'])
-            : null,
-        image: json['image'],
-        episode:
-            (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
-        created: DateTime.parse(json['created'] as String));
+      id: json['id'],
+      name: json['name'],
+      status: json['status'],
+      species: json['species'],
+      type: json['type'],
+      gender: json['gender'],
+      origin: json['origin'] != null
+          ? LocationModel.fromJson(json['origin'])
+          : null,
+      location: json['location'] != null
+          ? LocationModel.fromJson(json['location'])
+          : null,
+      image: json['image'],
+      episode:
+          (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
+      created: DateTime.parse(json['created'] as String),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -53,14 +55,14 @@ class PersonModel extends PersonEntity {
       'id': id,
       'name': name,
       'status': status,
-      'speceis': speceis,
+      'species': species,
       'type': type,
       'gender': gender,
       'origin': origin,
       'location': location,
       'image': image,
       'episode': episode,
-      'created': created!.toIso8601String()
+      'created': created.toIso8601String(),
     };
   }
 }

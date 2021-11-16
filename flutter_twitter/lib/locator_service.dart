@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // Bloc / Cubit
+  // BLoC / Cubit
   sl.registerFactory(
     () => PersonListCubit(getAllPersons: sl()),
   );
@@ -23,17 +23,23 @@ Future<void> init() async {
     () => PersonSearchBloc(searchPerson: sl()),
   );
 
-  // Usecases
+  // UseCases
   sl.registerLazySingleton(() => GetAllPersons(sl()));
   sl.registerLazySingleton(() => SearchPerson(sl()));
 
   // Repository
   sl.registerLazySingleton<PersonRepository>(
     () => PersonRepositoryImpl(
-        remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()),
+      remoteDataSource: sl(),
+      localDataSource: sl(),
+      networkInfo: sl(),
+    ),
   );
+
   sl.registerLazySingleton<PersonRemoteDataSource>(
-    () => PersonRemoveDataSourceImpl(client: http.Client()),
+    () => PersonRemoteDataSourceImpl(
+      client: sl(),
+    ),
   );
 
   sl.registerLazySingleton<PersonLocalDataSource>(
@@ -42,7 +48,7 @@ Future<void> init() async {
 
   // Core
   sl.registerLazySingleton<NetworkInfo>(
-    () => NetwokInfoImpl(sl()),
+    () => NetworkInfoImp(sl()),
   );
 
   // External

@@ -6,33 +6,36 @@ import 'package:flutter_twitter/features/presentation/bloc/person_list_cubit/per
 import 'package:meta/meta.dart';
 
 const SERVER_FAILURE_MESSAGE = 'Server Failure';
-const CACHE_FAILURE_MESSAGE = 'Cache Failure';
+const CACHED_FAILURE_MESSAGE = 'Cache Failure';
 
 class PersonListCubit extends Cubit<PersonState> {
-  final GetAllPersons? getAllPersons;
-  PersonListCubit({@required this.getAllPersons}) : super(PersonEmpty());
+  final GetAllPersons getAllPersons;
+
+  PersonListCubit({required this.getAllPersons}) : super(PersonEmpty());
 
   int page = 1;
+
   void loadPerson() async {
     if (state is PersonLoading) return;
 
     final currentState = state;
 
-    var oldPersons = <PersonEntity>[];
+    var oldPerson = <PersonEntity>[];
     if (currentState is PersonLoaded) {
-      oldPersons = currentState.personsList;
+      oldPerson = currentState.personsList;
     }
 
-    emit(PersonLoading(oldPersons, isFirstFetch: page == 1));
+    emit(PersonLoading(oldPerson, isFirstFetch: page == 1));
 
-    final failureOrPersons = await getAllPersons!(PagePersonParams(page: page));
+    final failureOrPerson = await getAllPersons(PagePersonParams(page: page));
 
-    failureOrPersons
-        .fold((failure) => PersonError(message: _mapFailureToMessage(failure)),
-            (character) {
+    failureOrPerson.fold(
+        (error) => emit(PersonError(message: _mapFailureToMessage(error))),
+        (character) {
       page++;
       final persons = (state as PersonLoading).oldPersonsList;
       persons.addAll(character);
+      print('List length: ${persons.length.toString()}');
       emit(PersonLoaded(persons));
     });
   }
@@ -42,7 +45,7 @@ class PersonListCubit extends Cubit<PersonState> {
       case ServerFailure:
         return SERVER_FAILURE_MESSAGE;
       case CacheFailure:
-        return CACHE_FAILURE_MESSAGE;
+        return CACHED_FAILURE_MESSAGE;
       default:
         return 'Unexpected Error';
     }

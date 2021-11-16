@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter/widgets/persons_list_widget.dart';
+import 'package:flutter_twitter/features/presentation/widgets/persons_list_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,9 +10,9 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
             icon: Icon(Icons.search),
             color: Colors.white,
+            onPressed: () {},
           )
         ],
       ),

@@ -11,6 +11,9 @@ class LocationModel extends LocationEntity {
   }
 
   Map<String, dynamic> toJson() {
-    return {'name': name, 'url': url};
+    return {
+      'name': name,
+      'url': url,
+    };
   }
 }
