@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_twitter/core/error/exception.dart';
 import 'package:flutter_twitter/features/data/models/person_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:meta/meta.dart';
 
 abstract class PersonLocalDataSource {
   /// Gets the cached [List<PersonModel>] which was gotten the last time
@@ -15,6 +14,7 @@ abstract class PersonLocalDataSource {
   Future<void> personsToCache(List<PersonModel> persons);
 }
 
+// ignore: constant_identifier_names
 const CACHED_PERSONS_LIST = 'CACHED_PERSONS_LIST';
 
 class PersonLocalDataSourceImpl implements PersonLocalDataSource {
@@ -26,7 +26,7 @@ class PersonLocalDataSourceImpl implements PersonLocalDataSource {
   Future<List<PersonModel>> getLastPersonsFromCache() {
     final jsonPersonsList =
         sharedPreferences.getStringList(CACHED_PERSONS_LIST);
-    if (jsonPersonsList != null && jsonPersonsList.isNotEmpty) {
+    if (jsonPersonsList!.isNotEmpty) {
       print('Get Persons from Cache: ${jsonPersonsList.length}');
       return Future.value(jsonPersonsList
           .map((person) => PersonModel.fromJson(json.decode(person)))
@@ -37,7 +37,7 @@ class PersonLocalDataSourceImpl implements PersonLocalDataSource {
   }
 
   @override
-  Future<void> personsToCache(List<PersonModel> persons) {
+  Future<List<String>> personsToCache(List<PersonModel> persons) {
     final List<String> jsonPersonsList =
         persons.map((person) => json.encode(person.toJson())).toList();
 

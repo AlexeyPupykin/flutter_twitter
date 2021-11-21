@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_twitter/core/error/exception.dart';
 import 'package:flutter_twitter/features/data/models/person_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
 
 abstract class PersonRemoteDataSource {
   /// Calls the https://rickandmortyapi.com/api/character/?page=1 endpoint.

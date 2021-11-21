@@ -9,7 +9,9 @@ import 'package:flutter_twitter/features/presentation/widgets/person_card_widget
 
 class PersonsList extends StatelessWidget {
   final scrollController = ScrollController();
-  int page = -1;
+  final int page = -1;
+
+  PersonsList({Key? key}) : super(key: key);
   void setupScrollController(BuildContext context) {
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
@@ -39,7 +41,7 @@ class PersonsList extends StatelessWidget {
       } else if (state is PersonError) {
         return Text(
           state.message,
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: const TextStyle(color: Colors.white, fontSize: 25),
         );
       }
       return ListView.separated(
@@ -48,7 +50,7 @@ class PersonsList extends StatelessWidget {
           if (index < persons.length) {
             return PersonCard(person: persons[index]);
           } else {
-            Timer(Duration(milliseconds: 30), () {
+            Timer(const Duration(milliseconds: 30), () {
               scrollController
                   .jumpTo(scrollController.position.maxScrollExtent);
             });
@@ -66,8 +68,8 @@ class PersonsList extends StatelessWidget {
   }
 
   Widget _loadingIndicator() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: Center(
         child: CircularProgressIndicator(),
       ),

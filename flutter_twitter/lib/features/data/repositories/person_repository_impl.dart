@@ -1,4 +1,3 @@
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter_twitter/core/error/exception.dart';
 import 'package:flutter_twitter/core/platform/network_info.dart';
 import 'package:flutter_twitter/features/data/datascources/person_local_data_source.dart';
@@ -36,7 +35,7 @@ class PersonRepositoryImpl implements PersonRepository {
 
   Future<Either<Failure, List<PersonModel>>> _getPersons(
       Future<List<PersonModel>> Function() getPersons) async {
-    if (await networkInfo.isConnected != ConnectivityResult.none) {
+    if (await networkInfo.isConnected) {
       try {
         final remotePerson = await getPersons();
         localDataSource.personsToCache(remotePerson);

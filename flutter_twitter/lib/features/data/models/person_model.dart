@@ -1,20 +1,19 @@
 import 'package:flutter_twitter/features/data/models/location_model.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
-import 'package:meta/meta.dart';
 
 class PersonModel extends PersonEntity {
-  PersonModel({
-    @required id,
-    @required name,
-    @required status,
-    @required species,
-    @required type,
-    @required gender,
-    @required origin,
-    @required location,
-    @required image,
-    @required episode,
-    @required created,
+  const PersonModel({
+    required id,
+    required name,
+    required status,
+    required species,
+    required type,
+    required gender,
+    required origin,
+    required location,
+    required image,
+    required episode,
+    required created,
   }) : super(
           id: id,
           name: name,
@@ -31,19 +30,19 @@ class PersonModel extends PersonEntity {
 
   factory PersonModel.fromJson(Map<String, dynamic> json) {
     return PersonModel(
-      id: json['id'],
-      name: json['name'],
-      status: json['status'],
-      species: json['species'],
-      type: json['type'],
-      gender: json['gender'],
+      id: json['id'] as int,
+      name: json['name'] as String,
+      status: json['status'] as String,
+      species: json['species'] as String,
+      type: json['type'] as String,
+      gender: json['gender'] as String,
       origin: json['origin'] != null
           ? LocationModel.fromJson(json['origin'])
           : null,
       location: json['location'] != null
           ? LocationModel.fromJson(json['location'])
           : null,
-      image: json['image'],
+      image: json['image'] as String,
       episode:
           (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
       created: DateTime.parse(json['created'] as String),

@@ -3,7 +3,6 @@ import 'package:flutter_twitter/core/error/failure.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
 import 'package:flutter_twitter/features/domain/usecases/get_all_persons.dart';
 import 'package:flutter_twitter/features/presentation/bloc/person_list_cubit/person_list_state.dart';
-import 'package:meta/meta.dart';
 
 const SERVER_FAILURE_MESSAGE = 'Server Failure';
 const CACHED_FAILURE_MESSAGE = 'Cache Failure';

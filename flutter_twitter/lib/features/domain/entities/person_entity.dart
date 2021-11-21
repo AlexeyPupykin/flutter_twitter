@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 class PersonEntity extends Equatable {
   final int id;
@@ -29,7 +28,7 @@ class PersonEntity extends Equatable {
   });
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         id,
         name,
         status,
