@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
+import 'package:flutter_twitter/features/presentation/pages/person_detail_screen.dart';
+import 'package:flutter_twitter/features/presentation/widgets/person_cache_image_widget.dart';
 
 class PersonCard extends StatelessWidget {
   final PersonEntity person;
@@ -13,12 +15,12 @@ class PersonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => PersonDetailPage(person: person),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PersonDetailPage(person: person),
+          ),
+        );
       },
       // child: Container(
       //   decoration: const BoxDecoration(
@@ -226,14 +228,12 @@ class PersonCard extends StatelessWidget {
       //   ),
       child: Row(
         children: [
-          // PersonCacheImage(
-          //   width: 166,
-          //   height: 166,
-          //   imageUrl: person.image,
-          // ),
-          SizedBox(
-            width: 166,
-            child: Image.network(person.image),
+          Container(
+            child: PersonCacheImage(
+              width: 166,
+              height: 166,
+              imageUrl: person.image,
+            ),
           ),
           const SizedBox(
             width: 16,
