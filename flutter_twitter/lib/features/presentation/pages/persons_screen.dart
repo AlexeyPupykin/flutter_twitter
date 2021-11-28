@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
+import 'package:flutter_twitter/features/presentation/widgets/custom_search_delegate.dart';
 import 'package:flutter_twitter/features/presentation/widgets/persons_list_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,7 +20,9 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.add),
             iconSize: 35,
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearchDelegate());
+            },
           ),
           SizedBox(width: 10),
           IconButton(

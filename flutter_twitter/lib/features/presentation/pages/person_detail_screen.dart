@@ -37,14 +37,6 @@ class PersonDetailPage extends StatelessWidget {
               height: 260,
               imageUrl: person.image,
             ),
-
-            // Container(
-            //   child: PersonCacheImage(
-            //     width: 260,
-            //     height: 260,
-            //     imageUrl: person.image,
-            //   ),
-            // ),
             const SizedBox(
               height: 16,
             ),

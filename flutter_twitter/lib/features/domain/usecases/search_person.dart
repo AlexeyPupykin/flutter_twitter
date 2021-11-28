@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+
 import 'package:flutter_twitter/core/error/failure.dart';
 import 'package:flutter_twitter/core/usecases/usecase.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
