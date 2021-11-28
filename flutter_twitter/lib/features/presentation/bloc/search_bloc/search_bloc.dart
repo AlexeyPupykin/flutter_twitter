@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_twitter/core/error/failure.dart';
 import 'package:flutter_twitter/features/domain/usecases/search_person.dart';
