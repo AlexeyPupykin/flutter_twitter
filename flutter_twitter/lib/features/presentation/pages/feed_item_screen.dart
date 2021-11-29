@@ -14,17 +14,18 @@ class FeedItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Comment> testComments = [
-      new Comment('mark_bulah', 'cool photo, dude!'),
-      new Comment('edward_bill', 'Whooa!!'),
-      new Comment('amiran495', 'hello from USA!!'),
-      new Comment('zheki444', 'Its better then my RR!!'),
-      new Comment('bakulin_official', '<3'),
+      Comment('mark_bulah', 'cool photo, dude!'),
+      Comment('edward_bill', 'Whooa!!'),
+      Comment('amiran495', 'hello from USA!!'),
+      Comment('zheki444', 'Its better then my RR!!'),
+      Comment('bakulin_official', '<3'),
     ];
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: AppColors.darkGreenColor,
@@ -37,7 +38,7 @@ class FeedItemPage extends StatelessWidget {
               showSearch(context: context, delegate: CustomSearchDelegate());
             },
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             iconSize: 35,
@@ -105,7 +106,7 @@ class FeedItemPage extends StatelessWidget {
 
               // likes, comments, share
               // _actionsRow(context, 25, 13),
-              ActionRow(numLikes: 25, numComments: 13),
+              const ActionRow(numLikes: 25, numComments: 13),
 
               // post`s comment
               const Padding(

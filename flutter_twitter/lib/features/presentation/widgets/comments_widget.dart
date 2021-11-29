@@ -22,10 +22,12 @@ class CommentsList extends StatelessWidget {
           text: TextSpan(children: <TextSpan>[
             TextSpan(
                 text: comments[index].author + '  ',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
+                style: const TextStyle(
+                    fontSize: 18.0, fontWeight: FontWeight.w600)),
             TextSpan(
               text: comments[index].text,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400),
+              style:
+                  const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400),
             ),
           ]),
         );

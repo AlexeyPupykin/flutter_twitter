@@ -58,7 +58,7 @@ class PersonsList extends StatelessWidget {
           }
         },
         separatorBuilder: (context, index) {
-          return Divider(
+          return const Divider(
             height: 4,
             color: Colors.white,
           );

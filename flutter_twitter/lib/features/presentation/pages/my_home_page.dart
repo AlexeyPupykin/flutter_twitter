@@ -12,9 +12,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int selectedIndex = 0;
-  Widget _feed = FeedPage();
-  Widget _myEmails = MyEmails();
-  Widget _myProfile = MyProfile();
+  final Widget _feed = const FeedPage();
+  final Widget _myEmails = const MyEmails();
+  final Widget _myProfile = const MyProfile();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
               showSearch(context: context, delegate: CustomSearchDelegate());
             },
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             iconSize: 35,
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
         unselectedItemColor: AppColors.cellBackground,
         selectedItemColor: Colors.white,
         iconSize: 28,
-        selectedIconTheme: IconThemeData(size: 35),
+        selectedIconTheme: const IconThemeData(size: 35),
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
@@ -73,32 +73,36 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget getBody() {
-    if (this.selectedIndex == 0) {
-      return this._feed;
-    } else if (this.selectedIndex == 1) {
-      return this._myEmails;
+    if (selectedIndex == 0) {
+      return _feed;
+    } else if (selectedIndex == 1) {
+      return _myEmails;
     } else {
-      return this._myProfile;
+      return _myProfile;
     }
   }
 
   void onTapHandler(int index) {
-    this.setState(() {
-      this.selectedIndex = index;
+    setState(() {
+      selectedIndex = index;
     });
   }
 }
 
 class MyEmails extends StatelessWidget {
+  const MyEmails({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Emails"));
+    return const Center(child: Text("New post"));
   }
 }
 
 class MyProfile extends StatelessWidget {
+  const MyProfile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Profile"));
+    return const Center(child: Text("Profile"));
   }
 }
