@@ -116,12 +116,17 @@ class CustomSearchDelegate extends SearchDelegate {
     return ListView.separated(
       padding: const EdgeInsets.all(10),
       itemBuilder: (context, index) {
-        return Text(
-          _suggestions[index],
-          style: const TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.w400,
+        return GestureDetector(
+          child: Text(
+            _suggestions[index],
+            style: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w400,
+            ),
           ),
+          onTap: () {
+            query = _suggestions[index];
+          },
         );
       },
       separatorBuilder: (context, index) {
