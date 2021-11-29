@@ -67,7 +67,10 @@ class FeedItemPage extends StatelessWidget {
                     Container(
                       height: 60,
                       width: 60,
-                      child: Image.asset('assets/images/user_img.png'),
+                      child: Image.asset(
+                        'assets/images/user_img.png',
+                        fit: BoxFit.fitHeight,
+                      ),
                       margin: const EdgeInsets.only(
                           left: 10.0, top: 10.0, bottom: 10.0),
                     ),

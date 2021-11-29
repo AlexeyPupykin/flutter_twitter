@@ -71,6 +71,7 @@ flutter:
   assets:
     - assets/images/user_img.png
     - assets/images/noimage.jpg
+    - assets/images/post_photo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

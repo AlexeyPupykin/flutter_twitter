@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/presentation/pages/feed_screen.dart';
+import 'package:flutter_twitter/features/presentation/pages/my_profile_screen.dart';
 import 'package:flutter_twitter/features/presentation/widgets/custom_search_delegate.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -14,7 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int selectedIndex = 0;
   final Widget _feed = const FeedPage();
   final Widget _myEmails = const MyEmails();
-  final Widget _myProfile = const MyProfile();
+  final Widget _myProfile = MyProfilePage();
 
   @override
   Widget build(BuildContext context) {

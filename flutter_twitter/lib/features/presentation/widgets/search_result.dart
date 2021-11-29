@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
 import 'package:flutter_twitter/features/presentation/pages/person_detail_screen.dart';
-import 'package:flutter_twitter/features/presentation/widgets/person_cache_image_widget.dart';
 
 class SearchResult extends StatelessWidget {
   final PersonEntity personResult;
@@ -33,7 +32,7 @@ class SearchResult extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 8),
           child: SizedBox(
-            width: MediaQuery.of(context).size.width - 200.0,
+            width: MediaQuery.of(context).size.width - 240.0,
             child: GestureDetector(
               child: Text(
                 personResult.name,
@@ -56,23 +55,24 @@ class SearchResult extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          width: 120,
+        SizedBox(
+          width: 160,
           child: TextButton(
-              child: Text('Subscribe'.toUpperCase(),
-                  style: TextStyle(fontSize: 18)),
+              child: const Text('Подписаться',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       AppColors.liteGreenColor),
                   padding: MaterialStateProperty.all<EdgeInsets>(
-                      EdgeInsets.fromLTRB(8, 4, 8, 4)),
+                      const EdgeInsets.fromLTRB(8, 4, 8, 4)),
                   foregroundColor:
                       MaterialStateProperty.all<Color>(Colors.white),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
-                          side: BorderSide(color: AppColors.liteGreenColor)))),
-              onPressed: () => null),
+                          side: const BorderSide(
+                              color: AppColors.liteGreenColor)))),
+              onPressed: () {}),
         ),
       ],
     );
