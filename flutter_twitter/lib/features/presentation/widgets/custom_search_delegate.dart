@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
 import 'package:flutter_twitter/features/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_twitter/features/presentation/bloc/search_bloc/search_event.dart';
@@ -9,15 +10,31 @@ import 'package:flutter_twitter/features/presentation/bloc/search_bloc/search_st
 import 'package:flutter_twitter/features/presentation/widgets/search_result.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
-  CustomSearchDelegate() : super(searchFieldLabel: 'Search for characters...');
+  CustomSearchDelegate()
+      : super(
+          searchFieldLabel: 'Search for users...',
+        );
 
   final _suggestions = [
-    'Rick',
-    'Morty',
-    'Summer',
-    'Beth',
-    'Jerry',
+    'Kendall Jenner',
+    'Justin Bieber',
+    'Lionel Messi',
+    'Kim Kardashian',
+    'Selena Gomez',
   ];
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    return theme.copyWith(
+      appBarTheme: const AppBarTheme(color: AppColors.darkGreenColor),
+      inputDecorationTheme: searchFieldDecorationTheme ??
+          InputDecorationTheme(
+            hintStyle: searchFieldStyle ?? theme.inputDecorationTheme.hintStyle,
+            border: InputBorder.none,
+          ),
+    );
+  }
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -34,7 +51,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-        icon: const Icon(Icons.arrow_back_outlined),
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
         tooltip: 'Back',
         onPressed: () => close(context, null));
   }
@@ -55,7 +72,7 @@ class CustomSearchDelegate extends SearchDelegate {
         } else if (state is PersonSearchLoaded) {
           final person = state.persons;
           if (person.isEmpty) {
-            return _showErrorText('No Characters with that name found');
+            return _showErrorText('No users found');
           }
           return ListView.builder(
             itemCount: person.isNotEmpty ? person.length : 0,

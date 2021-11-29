@@ -3,15 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
+import 'package:flutter_twitter/features/presentation/pages/feed_item_screen.dart';
 import 'package:flutter_twitter/features/presentation/pages/person_detail_screen.dart';
+import 'package:flutter_twitter/features/presentation/widgets/action_row_widget.dart';
+import 'package:flutter_twitter/features/presentation/widgets/comments_widget.dart';
 import 'package:flutter_twitter/features/presentation/widgets/person_cache_image_widget.dart';
-
-class Comment {
-  String author;
-  String text;
-
-  Comment(this.author, this.text);
-}
 
 class PersonCard extends StatelessWidget {
   final PersonEntity person;
@@ -82,14 +78,25 @@ class PersonCard extends StatelessWidget {
             ),
 
             // image
-            PersonCacheImage(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width,
-              imageUrl: person.image,
+            GestureDetector(
+              child: PersonCacheImage(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width,
+                imageUrl: person.image,
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FeedItemPage(feedItem: person),
+                  ),
+                );
+              },
             ),
 
             // likes, comments, share
-            _actionsRow(context, 25, 13),
+            // _actionsRow(context, 25, 13),
+            const ActionRow(numLikes: 25, numComments: 13),
 
             // post`s comment
             const Padding(
@@ -119,7 +126,8 @@ class PersonCard extends StatelessWidget {
             ),
 
             // comments
-            _comments(testComments),
+            // _comments(testComments),
+            CommentsList(comments: testComments)
           ],
         ),
       ),
@@ -226,103 +234,80 @@ class PersonCard extends StatelessWidget {
     );
   }
 
-  Widget _actionsRow(context, int numLikes, int numComments) {
-    return SizedBox(
-      height: 80,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          // likes
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
-            child: SizedBox(
-              height: 60,
-              width: MediaQuery.of(context).size.width / 3 - 8,
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.favorite_outline_outlined,
-                    size: 35,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    numLikes.toString(),
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // comments
-          SizedBox(
-            height: 60,
-            width: MediaQuery.of(context).size.width / 3,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.comment_outlined,
-                  size: 35,
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  numComments.toString(),
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // share
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 8.0, 0),
-            child: SizedBox(
-              height: 60,
-              width: MediaQuery.of(context).size.width / 3 - 8,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  Icon(
-                    Icons.share_outlined,
-                    size: 35,
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _actionsRow(context, int numLikes, int numComments) {
+  //   return SizedBox(
+  //     height: 80,
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.start,
+  //       children: [
+  //         // likes
+  //         Padding(
+  //           padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+  //           child: SizedBox(
+  //             height: 60,
+  //             width: MediaQuery.of(context).size.width / 3 - 8,
+  //             child: Row(
+  //               children: [
+  //                 const Icon(
+  //                   Icons.favorite_outline_outlined,
+  //                   size: 35,
+  //                 ),
+  //                 const SizedBox(width: 10),
+  //                 Text(
+  //                   numLikes.toString(),
+  //                   style: const TextStyle(
+  //                     fontSize: 20,
+  //                     color: Colors.white,
+  //                     fontWeight: FontWeight.w400,
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         ),
+  //         // comments
+  //         SizedBox(
+  //           height: 60,
+  //           width: MediaQuery.of(context).size.width / 3,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.center,
+  //             children: [
+  //               const Icon(
+  //                 Icons.comment_outlined,
+  //                 size: 35,
+  //               ),
+  //               const SizedBox(width: 10),
+  //               Text(
+  //                 numComments.toString(),
+  //                 style: const TextStyle(
+  //                   fontSize: 20,
+  //                   color: Colors.white,
+  //                   fontWeight: FontWeight.w400,
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         // share
+  //         Padding(
+  //           padding: const EdgeInsets.fromLTRB(0, 0, 8.0, 0),
+  //           child: SizedBox(
+  //             height: 60,
+  //             width: MediaQuery.of(context).size.width / 3 - 8,
+  //             child: Row(
+  //               mainAxisAlignment: MainAxisAlignment.end,
+  //               children: const [
+  //                 Icon(
+  //                   Icons.share_outlined,
+  //                   size: 35,
+  //                 )
+  //               ],
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  Widget _comments(comments) {
-    return ListView.separated(
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(8),
-      itemBuilder: (context, index) {
-        return RichText(
-          text: TextSpan(children: <TextSpan>[
-            TextSpan(
-                text: comments[index].author + '  ',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
-            TextSpan(
-              text: comments[index].text,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400),
-            ),
-          ]),
-        );
-      },
-      separatorBuilder: (context, index) {
-        return const Divider();
-      },
-      itemCount: comments.length,
-    );
-  }
 }

@@ -5,8 +5,8 @@ import 'package:flutter_twitter/features/presentation/bloc/person_list_cubit/per
 import 'package:flutter_twitter/features/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_twitter/locator_service.dart' as di;
 
+import 'features/presentation/pages/my_home_page.dart';
 import 'locator_service.dart';
-import 'features/presentation/pages/persons_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: AppColors.mainBackground,
           scaffoldBackgroundColor: AppColors.mainBackground,
         ),
-        home: const HomePage(),
+        home: const MyHomePage(),
       ),
     );
   }

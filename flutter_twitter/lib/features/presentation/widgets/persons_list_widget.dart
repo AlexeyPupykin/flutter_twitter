@@ -59,7 +59,8 @@ class PersonsList extends StatelessWidget {
         },
         separatorBuilder: (context, index) {
           return Divider(
-            color: Colors.grey[400],
+            height: 4,
+            color: Colors.white,
           );
         },
         itemCount: persons.length + (isLoading ? 1 : 0),
