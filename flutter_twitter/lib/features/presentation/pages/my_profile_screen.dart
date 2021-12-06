@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
-import 'package:flutter_twitter/features/presentation/widgets/person_cache_image_widget.dart';
+import 'package:flutter_twitter/features/presentation/widgets/feed_item_cache_image_widget.dart';
 
 class MyProfilePage extends StatelessWidget {
   const MyProfilePage({Key? key}) : super(key: key);
@@ -13,8 +13,8 @@ class MyProfilePage extends StatelessWidget {
       'https://via.placeholder.com/600/8f209a',
       'https://via.placeholder.com/600/5e3a73'
     ];
-    return Scaffold(
-      body: Column(
+    return SingleChildScrollView(
+      child: Column(
         children: [
           // photo, nickname, bio
           Row(
@@ -135,68 +135,25 @@ class MyProfilePage extends StatelessWidget {
           ),
 
           // posts
-          Expanded(
-            child: GridView.builder(
-              itemCount: photoUrls.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: (MediaQuery.of(context).orientation ==
-                          Orientation.portrait)
-                      ? 2
-                      : 3),
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                    child: GridTile(
-                  child: PersonCacheImage(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width,
-                    imageUrl: photoUrls[index],
-                  ),
-                ));
-              },
-            ),
-            //     child: GridView.count(
-            //   // physics: const NeverScrollableScrollPhysics(),
-            //   shrinkWrap: true,
-            //   primary: false,
-            //   crossAxisSpacing: 2,
-            //   mainAxisSpacing: 2,
-            //   crossAxisCount: 2,
-            //   children: <Widget>[
-            //     Container(
-            //       child: PersonCacheImage(
-            //         width: MediaQuery.of(context).size.width,
-            //         height: MediaQuery.of(context).size.width,
-            //         imageUrl:
-            //             '//images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg',
-            //       ),
-            //     ),
-            //     Container(
-            //       child: PersonCacheImage(
-            //         width: MediaQuery.of(context).size.width,
-            //         height: MediaQuery.of(context).size.width,
-            //         imageUrl: 'https://via.placeholder.com/600/9c184f',
-            //       ),
-            //     ),
-            //     Container(
-            //       child: const Text('Sound of screams but the'),
-            //       color: Colors.teal[300],
-            //     ),
-            //     Container(
-            //       child: const Text('Who scream'),
-            //       color: Colors.teal[400],
-            //     ),
-            //     Container(
-            //       padding: const EdgeInsets.all(8),
-            //       child: const Text('Revolution is coming...'),
-            //       color: Colors.teal[500],
-            //     ),
-            //     Container(
-            //       padding: const EdgeInsets.all(8),
-            //       child: const Text('Revolution, they...'),
-            //       color: Colors.teal[600],
-            //     ),
-            //   ],
-            // )
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: photoUrls.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount:
+                    (MediaQuery.of(context).orientation == Orientation.portrait)
+                        ? 2
+                        : 3),
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                  child: GridTile(
+                child: FeedItemCacheImage(
+                  width: MediaQuery.of(context).size.width / 10,
+                  height: MediaQuery.of(context).size.width / 10,
+                  imageUrl: photoUrls[index],
+                ),
+              ));
+            },
           )
         ],
       ),

@@ -7,12 +7,22 @@ import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
 import 'package:flutter_twitter/features/presentation/widgets/action_row_widget.dart';
 import 'package:flutter_twitter/features/presentation/widgets/comments_widget.dart';
 import 'package:flutter_twitter/features/presentation/widgets/custom_search_delegate.dart';
-import 'package:flutter_twitter/features/presentation/widgets/person_cache_image_widget.dart';
+import 'package:flutter_twitter/features/presentation/widgets/feed_item_cache_image_widget.dart';
 
-class FeedItemPage extends StatelessWidget {
+class FeedItemPage extends StatefulWidget {
   final PersonEntity feedItem;
 
   const FeedItemPage({Key? key, required this.feedItem}) : super(key: key);
+
+  @override
+  _FeedItemPageState createState() => _FeedItemPageState(feedItem);
+}
+
+class _FeedItemPageState extends State<FeedItemPage> {
+  final PersonEntity feedItem;
+  final ScrollController _scrollController = ScrollController();
+
+  _FeedItemPageState(this.feedItem);
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +64,10 @@ class FeedItemPage extends StatelessWidget {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              // padding: const EdgeInsets.symmetric(horizontal: 16),
+              controller: _scrollController,
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.black,
-                  // borderRadius: BorderRadius.circular(8),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +116,7 @@ class FeedItemPage extends StatelessWidget {
                     ),
 
                     // image
-                    PersonCacheImage(
+                    FeedItemCacheImage(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.width,
                       imageUrl: feedItem.image,
@@ -151,32 +160,34 @@ class FeedItemPage extends StatelessWidget {
               ),
             ),
           ),
-          // const InputCommentRow()
-          const ImputCommentRow()
+          InputCommentRow(
+            scrollController: _scrollController,
+          )
         ],
       ),
     );
   }
 }
 
-class ImputCommentRow extends StatefulWidget {
-  const ImputCommentRow({Key? key}) : super(key: key);
+class InputCommentRow extends StatefulWidget {
+  final ScrollController scrollController;
+  const InputCommentRow({Key? key, required this.scrollController})
+      : super(key: key);
 
   @override
-  _ImputCommentRowState createState() => _ImputCommentRowState();
+  _InputCommentRowState createState() =>
+      _InputCommentRowState(scrollController);
 }
 
-// Define a corresponding State class.
-// This class holds the data related to the Form.
-class _ImputCommentRowState extends State<ImputCommentRow> {
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
+class _InputCommentRowState extends State<InputCommentRow> {
+  final ScrollController scrollController;
   final myController = TextEditingController();
+
+  _InputCommentRowState(this.scrollController);
   // final ApiService apiService;
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     myController.dispose();
     super.dispose();
   }
@@ -219,9 +230,12 @@ class _ImputCommentRowState extends State<ImputCommentRow> {
             if (commentText.isEmpty) return;
             // apiService.addComment(myController.text, 1);
             print('comment is ' + myController.text);
-            // myController.text = '';
             FocusScope.of(context).unfocus();
             myController.clear();
+            scrollController.animateTo(
+                scrollController.position.maxScrollExtent,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.ease);
           },
           backgroundColor: Colors.transparent,
           child: const Icon(

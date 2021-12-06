@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
 import 'package:flutter_twitter/features/presentation/bloc/person_list_cubit/person_list_cubit.dart';
 import 'package:flutter_twitter/features/presentation/bloc/person_list_cubit/person_list_state.dart';
-import 'package:flutter_twitter/features/presentation/widgets/person_card_widget.dart';
+import 'package:flutter_twitter/features/presentation/widgets/feed_item_card_widget.dart';
 
-class PersonsList extends StatelessWidget {
+class FeedItemsList extends StatelessWidget {
   final scrollController = ScrollController();
   final int page = -1;
 
-  PersonsList({Key? key}) : super(key: key);
+  FeedItemsList({Key? key}) : super(key: key);
   void setupScrollController(BuildContext context) {
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
@@ -48,7 +48,7 @@ class PersonsList extends StatelessWidget {
         controller: scrollController,
         itemBuilder: (context, index) {
           if (index < persons.length) {
-            return PersonCard(person: persons[index]);
+            return FeedItemCard(person: persons[index]);
           } else {
             Timer(const Duration(milliseconds: 30), () {
               scrollController

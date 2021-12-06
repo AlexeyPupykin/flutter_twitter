@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
-import 'package:flutter_twitter/features/presentation/widgets/person_cache_image_widget.dart';
+import 'package:flutter_twitter/features/presentation/widgets/feed_item_cache_image_widget.dart';
 
 class PersonDetailPage extends StatelessWidget {
   final PersonEntity person;
@@ -32,7 +32,7 @@ class PersonDetailPage extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            PersonCacheImage(
+            FeedItemCacheImage(
               width: 260,
               height: 260,
               imageUrl: person.image,
