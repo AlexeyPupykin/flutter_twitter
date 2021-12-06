@@ -15,7 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int selectedIndex = 0;
   final Widget _feed = const FeedPage();
   final Widget _myEmails = const MyEmails();
-  final Widget _myProfile = MyProfilePage();
+  final Widget _myProfile = const MyProfilePage();
 
   @override
   Widget build(BuildContext context) {

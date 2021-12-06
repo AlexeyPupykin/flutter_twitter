@@ -15,6 +15,7 @@ class CommentsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       padding: const EdgeInsets.all(8),
       itemBuilder: (context, index) {
