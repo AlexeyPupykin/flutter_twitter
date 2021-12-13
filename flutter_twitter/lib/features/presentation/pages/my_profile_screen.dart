@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
+import 'package:flutter_twitter/features/presentation/pages/edit_profile_screen.dart';
 import 'package:flutter_twitter/features/presentation/widgets/feed_item_cache_image_widget.dart';
 
 class MyProfilePage extends StatelessWidget {
@@ -74,7 +75,14 @@ class MyProfilePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25.0),
                             side: const BorderSide(
                                 color: AppColors.darkGreenColor)))),
-                onPressed: () {}),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EditProfilePage(),
+                    ),
+                  );
+                }),
           ),
 
           // numbers of posts, subs

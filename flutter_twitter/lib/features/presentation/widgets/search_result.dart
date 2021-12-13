@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/domain/entities/person_entity.dart';
 import 'package:flutter_twitter/features/presentation/pages/person_detail_screen.dart';
+import 'package:flutter_twitter/features/presentation/pages/profile_screen.dart';
 
 class SearchResult extends StatelessWidget {
   final PersonEntity personResult;
@@ -46,10 +47,9 @@ class SearchResult extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        PersonDetailPage(person: personResult),
-                  ),
+                  MaterialPageRoute(builder: (context) => ProfilePage()
+                      // PersonDetailPage(person: personResult),
+                      ),
                 );
               },
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/features/presentation/pages/my_home_page.dart';
+import 'package:flutter_twitter/features/presentation/pages/registration_screen.dart';
 // import 'package:flutter_twitter/common/app_colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -204,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MyHomePage(),
+                            builder: (context) => const RegistrationPage(),
                           ),
                         );
                       },
