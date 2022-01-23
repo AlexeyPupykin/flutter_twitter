@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/screens/home/screens/navbar/navbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,9 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       height: isCurrent ? 15.0 : 7.5,
       width: isCurrent ? 15.0 : 7.5,
       decoration: BoxDecoration(
-        color: isCurrent
-            ? Color(0xFF0190C4).withAlpha(190)
-            : Colors.grey.withAlpha(190),
+        color: isCurrent ? AppColors.liteGreenColor : AppColors.greyColor,
         borderRadius: BorderRadius.circular(15.0),
       ),
     );
@@ -54,7 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.mainBackground,
         body: Container(
           height: MediaQuery.of(context).size.height - 100,
           child: PageView.builder(
@@ -80,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 padding: EdgeInsets.symmetric(
                   horizontal: 20.0,
                 ),
-                color: Colors.white,
+                color: AppColors.mainBackground,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -90,15 +89,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         children: <Widget>[
                           Positioned.fill(
                             child: Container(
-                              decoration:
-                                  const BoxDecoration(color: Color(0xFFD4EBF4)),
+                              decoration: const BoxDecoration(
+                                  color: AppColors.darkGreenColor),
                             ),
                           ),
                           TextButton(
                             style: TextButton.styleFrom(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 24.0),
-                              primary: Colors.black,
+                              primary: AppColors.textMainColor,
                               textStyle: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -112,7 +111,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 currentIndex = sliders.length - 1;
                               });
                             },
-                            child: const Text("Skip"),
+                            child: const Text("Пропустить"),
                           )
                         ],
                       ),
@@ -129,15 +128,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         children: <Widget>[
                           Positioned.fill(
                             child: Container(
-                              decoration:
-                                  const BoxDecoration(color: Color(0xFF00C468)),
+                              decoration: const BoxDecoration(
+                                  color: AppColors.liteGreenColor),
                             ),
                           ),
                           TextButton(
                             style: TextButton.styleFrom(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 24.0),
-                              primary: Colors.white,
+                              primary: AppColors.textMainColor,
                               textStyle: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -151,7 +150,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 currentIndex = currentIndex + 1;
                               });
                             },
-                            child: const Text("Next"),
+                            child: const Text("Далее"),
                           )
                         ],
                       ),
@@ -167,7 +166,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       transformAlignment: Alignment.center,
                       width: MediaQuery.of(context).size.width,
                       height: Platform.isIOS ? 70.0 : 60.0,
-                      color: Color(0xFF0190C4).withAlpha(255),
+                      color: AppColors.darkGreenColor,
                       child: TextButton(
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.symmetric(horizontal: 0.0),
@@ -183,7 +182,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         child: SizedBox.expand(
                           child: Center(
                               child: Text(
-                            "GET STARTED NOW!",
+                            "НАЧАТь СКОРЕЕ",
                             textAlign: TextAlign.center,
                           )),
                         ),
@@ -223,7 +222,7 @@ class SliderTile extends StatelessWidget {
             style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF333333)),
+                color: AppColors.textMainColor),
           ),
           SizedBox(
             height: 15.0,
@@ -234,7 +233,7 @@ class SliderTile extends StatelessWidget {
             style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.normal,
-                color: Color(0xFF333333)),
+                color: AppColors.textMainColor),
           )
         ],
       ),

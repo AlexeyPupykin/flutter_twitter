@@ -37,20 +37,20 @@ List<OnboardingScreenData> getSliders() {
   List<OnboardingScreenData> sliders = List.empty(growable: true);
 
   sliders.add(new OnboardingScreenData(
-      imagePath: "assets/onboarding/illustration1.png",
-      title: "Explore content",
+      imagePath: "assets/onboarding/ob1.png",
+      title: "Смотри, что там у других",
       description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget vehicula odio, vel viverra leo."));
+          "Ты сможешь увидеть как живут люди со всей планеты Земля и не только ;)"));
   sliders.add(new OnboardingScreenData(
-      imagePath: "assets/onboarding/illustration2.png",
-      title: "Write your own content",
+      imagePath: "assets/onboarding/ob1.png",
+      title: "Заливай свой эксклюзиный контент, чтобы смотрели, что там у тебя",
       description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget vehicula odio, vel viverra leo."));
+          "Все смогут увидеть твой контент. Даже инопланетяне смогут увидеть как ты живешь xD"));
   sliders.add(new OnboardingScreenData(
-      imagePath: "assets/onboarding/illustration3.png",
-      title: "Done!",
+      imagePath: "assets/onboarding/ob1.png",
+      title: "Подписывайся на тех, кто интересен",
       description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget vehicula odio, vel viverra leo."));
+          "Ты будешь первым, кто узнает, что там новенького у твоих друзей"));
 
   return sliders;
 }
