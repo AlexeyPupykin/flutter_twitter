@@ -120,7 +120,8 @@ class _CommentScreenState extends State<CommentScreen> {
                                 .user
                                 .uid
                                 .isEmpty) {
-                              BotToast.showText(text: "login to like");
+                              BotToast.showText(
+                                  text: "Авторизуйтесь, чтобы оставить лайк");
                             } else {
                               context.read<CommentBloc>()..add(OnLikeEvent());
                             }

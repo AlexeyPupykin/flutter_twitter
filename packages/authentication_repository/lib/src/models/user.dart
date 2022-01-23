@@ -8,6 +8,7 @@ class User extends Equatable {
   final String? photo;
   final String? displayName;
   final String? gender;
+  final String? description;
   final DateTime? dateOfBirth;
   final int? followers;
   final int? following;
@@ -21,6 +22,7 @@ class User extends Equatable {
     this.photo,
     this.displayName,
     this.gender,
+    this.description,
     this.dateOfBirth,
     this.followers,
     this.following,
@@ -35,6 +37,7 @@ class User extends Equatable {
     photo: '',
     displayName: '',
     gender: '',
+    description: '',
     dateOfBirth: null,
     followers: 0,
     following: 0,
@@ -53,6 +56,7 @@ class User extends Equatable {
     String? photo,
     String? name,
     String? gender,
+    String? description,
     DateTime? dateOfBirth,
     int? followers,
     int? following,
@@ -66,6 +70,7 @@ class User extends Equatable {
       displayName: name ?? this.displayName,
       photo: photo ?? this.photo,
       gender: gender ?? this.gender,
+      description: description ?? this.description,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,
       followers: followers ?? this.followers,
       following: following ?? this.following,
@@ -82,6 +87,7 @@ class User extends Equatable {
         photo,
         displayName,
         gender,
+        description,
         dateOfBirth,
         followers,
         following,
@@ -98,6 +104,7 @@ class User extends Equatable {
         'photo': photo ?? '',
         'name': displayName ?? '',
         'gender': gender ?? '',
+        'description': description ?? '',
         'followers': followers ?? 0,
         'following': following ?? 0,
         'posts': posts ?? 0,
@@ -111,6 +118,7 @@ class User extends Equatable {
         'photo': photo ?? '',
         'name': displayName ?? '',
         'gender': gender ?? '',
+        'description': description ?? '',
         'dateOfBirth': dateOfBirth,
         'followers': followers ?? 0,
         'following': following ?? 0,
@@ -132,7 +140,6 @@ class User extends Equatable {
       disabled = doc.get('disabled');
     } catch (e) {}
 
-
     return User(
       uid: doc.id,
       username: doc.get('username'),
@@ -140,6 +147,7 @@ class User extends Equatable {
       photo: doc.get('photo'),
       displayName: doc.get('name'),
       gender: doc.get('gender'),
+      description: doc.get('description'),
       dateOfBirth: dateOfBirth,
       following: doc.get('following'),
       followers: doc.get('followers'),

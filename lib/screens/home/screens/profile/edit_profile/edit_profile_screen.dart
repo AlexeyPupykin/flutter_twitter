@@ -133,16 +133,15 @@ class EditProfileScreen extends StatelessWidget {
                                       padding:
                                           EdgeInsets.only(top: 8, bottom: 8),
                                       child: Text(
-                                        'Пол',
+                                        'Описание',
                                         style: TextStyle(fontSize: 16),
                                       ),
                                     ),
-                                    _buildInput(
-                                        TextInputType.text, user.gender!,
-                                        (value) {
+                                    _buildInput(TextInputType.multiline,
+                                        user.description!, (value) {
                                       context
                                           .read<EditProfileCubit>()
-                                          .genderChanged(value);
+                                          .descriptionChanged(value);
                                     }, null),
                                   ],
                                 ),
@@ -196,6 +195,7 @@ class EditProfileScreen extends StatelessWidget {
                                         )),
                                   ],
                                 ),
+                                const SizedBox(height: 8),
                               ],
                             ),
                           ),
@@ -228,7 +228,7 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 8),
                   SizedBox(
                     width: double.infinity,
                     height: 48,
@@ -287,6 +287,7 @@ class EditProfileScreen extends StatelessWidget {
       onChanged: onChanged,
       validator: validator,
       keyboardType: inputType,
+      maxLines: inputType == TextInputType.multiline ? 2 : 1,
       style: const TextStyle(fontSize: 22.0, color: Colors.black),
       decoration: InputDecoration(
         filled: true,

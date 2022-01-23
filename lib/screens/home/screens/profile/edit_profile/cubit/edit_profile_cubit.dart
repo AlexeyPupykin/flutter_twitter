@@ -25,7 +25,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emit(
       state.copyWith(
         name: user.displayName,
-        gender: user.gender,
+        description: user.description,
         dateOfBirth: user.dateOfBirth,
       ),
     );
@@ -43,9 +43,10 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     );
   }
 
-  void genderChanged(String gender) {
+  void descriptionChanged(String description) {
     emit(
-      state.copyWith(gender: gender, status: EditProfileStatus.initial),
+      state.copyWith(
+          description: description, status: EditProfileStatus.initial),
     );
   }
 
@@ -73,7 +74,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
       final updatedUser = user.copyWith(
         name: state.name,
-        gender: state.gender,
+        description: state.description,
         dateOfBirth: state.dateOfBirth,
         photo: profileImageUrl,
       );

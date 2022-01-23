@@ -3,12 +3,12 @@ import 'package:flutter_twitter/extensions/datetime_extensions.dart';
 
 class ProfileInfo extends StatelessWidget {
   final String fullName;
-  final String gender;
+  final String description;
   final DateTime? dateOfBirth;
 
   const ProfileInfo({
     required this.fullName,
-    required this.gender,
+    required this.description,
     required this.dateOfBirth,
   });
 
@@ -26,17 +26,20 @@ class ProfileInfo extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 6,
+          height: 8,
         ),
-        Text(
-          gender,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.normal,
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 3 / 4 - 60,
+          child: Text(
+            description,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
         const SizedBox(
-          height: 6,
+          height: 8,
         ),
         Text(
           dateOfBirth == null

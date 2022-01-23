@@ -248,13 +248,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(width: 16.0),
-                  Container(
-                    child: ProfileInfo(
-                      fullName: state.user.displayName ?? "",
-                      gender: state.user.gender ?? "",
-                      dateOfBirth: state.user.dateOfBirth,
-                    ),
+                  SizedBox(width: 20.0),
+                  ProfileInfo(
+                    fullName: state.user.displayName ?? "",
+                    description: state.user.description ?? "",
+                    dateOfBirth: state.user.dateOfBirth,
                   ),
                 ],
               ),
