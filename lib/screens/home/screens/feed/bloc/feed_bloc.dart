@@ -155,12 +155,12 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
 
         final updatedPostList = List<PostModel?>.from(state.posts);
 
-        // for (var post in postListPaginated) {
-        //   if (updatedPostList.any((e) => e!.id == post!.id)) {
-        //   } else {
-        //     updatedPostList.add(post);
-        //   }
-        // }
+        for (var post in postListPaginated) {
+          if (updatedPostList.any((e) => e!.id == post!.id)) {
+          } else {
+            updatedPostList.add(post);
+          }
+        }
 
         final likedPostIds = await _postRepo.getLikedPostIds(
           userId: _authBloc.state.user.uid,
