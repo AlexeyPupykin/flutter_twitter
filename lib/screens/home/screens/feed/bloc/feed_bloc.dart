@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_twitter/blocs/blocs.dart';
-import 'package:flutter_twitter/constants/firebase_constants.dart';
 import 'package:flutter_twitter/cubit/cubits.dart';
 import 'package:flutter_twitter/models/models.dart';
 import 'package:flutter_twitter/repositories/repositories.dart';
@@ -156,12 +155,12 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
 
         final updatedPostList = List<PostModel?>.from(state.posts);
 
-        for (var post in postListPaginated) {
-          if (updatedPostList.any((e) => e!.id == post!.id)) {
-          } else {
-            updatedPostList.add(post);
-          }
-        }
+        // for (var post in postListPaginated) {
+        //   if (updatedPostList.any((e) => e!.id == post!.id)) {
+        //   } else {
+        //     updatedPostList.add(post);
+        //   }
+        // }
 
         final likedPostIds = await _postRepo.getLikedPostIds(
           userId: _authBloc.state.user.uid,

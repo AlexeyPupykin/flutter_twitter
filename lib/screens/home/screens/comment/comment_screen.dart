@@ -2,7 +2,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_twitter/blocs/blocs.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/cubit/comment_post_cubit/comment_post_cubit.dart';

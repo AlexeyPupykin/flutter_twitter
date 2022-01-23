@@ -232,7 +232,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Container(
         color: Colors.black,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
@@ -246,16 +246,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         radius: MediaQuery.of(context).size.width / 8,
                         profileImageURL: state.user.photo,
                       ),
-                      SizedBox(height: 12.0),
-                      Text(
-                        state.user.username!,
-                        style: TextStyle(fontSize: 24.0),
-                      )
                     ],
                   ),
                   SizedBox(width: 16.0),
                   Container(
-                    width: MediaQuery.of(context).size.width * 2 / 3 - 36,
                     child: ProfileInfo(
                       fullName: state.user.displayName ?? "",
                       gender: state.user.gender ?? "",
@@ -318,7 +312,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 : null,
             onLike: () {
               if (context.read<AuthBloc>().state.user.uid.isEmpty) {
-                BotToast.showText(text: "login to like");
+                BotToast.showText(text: "Авторизуйтесь, чтобы оставить лайк");
               } else {
                 if (isLiked) {
                   context.read<LikePostCubit>().unLikePost(post: post);

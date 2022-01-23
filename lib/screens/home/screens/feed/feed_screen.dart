@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_twitter/blocs/auth_bloc/auth_bloc.dart';
 import 'package:flutter_twitter/cubit/cubits.dart';
-import 'package:flutter_twitter/models/models.dart';
-import 'package:flutter_twitter/repositories/repositories.dart';
-import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
 import 'package:flutter_twitter/widgets/widgets.dart';
 
 import 'bloc/feed_bloc.dart';
@@ -117,7 +114,8 @@ class _FeedScreenState extends State<FeedScreen> {
                     : null,
                 onLike: () {
                   if (context.read<AuthBloc>().state.user.uid.isEmpty) {
-                    BotToast.showText(text: "login to like");
+                    BotToast.showText(
+                        text: "Авторизуйтесь, чтобы оставить лайк");
                   } else {
                     if (isLiked) {
                       context.read<LikePostCubit>().unLikePost(post: post);

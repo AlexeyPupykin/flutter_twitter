@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ConfirmationDialog extends StatelessWidget {
   final IconData icon;

@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_twitter/blocs/blocs.dart';
-import 'package:flutter_twitter/constants/firebase_constants.dart';
 import 'package:flutter_twitter/models/models.dart';
 import 'package:flutter_twitter/repositories/repositories.dart';
 

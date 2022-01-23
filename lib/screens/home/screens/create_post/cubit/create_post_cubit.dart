@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_twitter/blocs/blocs.dart';
 import 'package:flutter_twitter/models/models.dart';
 import 'package:flutter_twitter/repositories/repositories.dart';
-import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
 
 part 'create_post_state.dart';
 

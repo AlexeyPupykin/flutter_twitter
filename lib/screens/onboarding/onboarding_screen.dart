@@ -182,7 +182,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         child: SizedBox.expand(
                           child: Center(
                               child: Text(
-                            "НАЧАТь СКОРЕЕ",
+                            "НАЧАТЬ СКОРЕЕ",
                             textAlign: TextAlign.center,
                           )),
                         ),
