@@ -54,27 +54,4 @@ class LoginCubit extends Cubit<LoginState> {
       ));
     }
   }
-
-  // Future<void> logInWithGoogle() async {
-  //   emit(state.copyWith(
-  //     status: FormzStatus.submissionInProgress,
-  //   ));
-  //   try {
-  //     var user = await _authRepo.logInWithGoogle();
-  //     _userRepo.setupUser(user: user);
-  //     emit(state.copyWith(
-  //       status: FormzStatus.submissionSuccess,
-  //     ));
-  //   } on LogInWithGoogleFailure catch (ex) {
-  //     emit(state.copyWith(
-  //       status: FormzStatus.submissionFailure,
-  //       errorMessage: ex.message,
-  //     ));
-  //   } catch (ex) {
-  //     emit(state.copyWith(
-  //       status: FormzStatus.submissionFailure,
-  //       errorMessage: ex.toString(),
-  //     ));
-  //   }
-  // }
 }

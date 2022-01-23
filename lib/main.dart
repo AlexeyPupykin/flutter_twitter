@@ -32,10 +32,8 @@ void main() async {
   BlocOverrides.runZoned(
     () => runApp(MyApp(
       authenticationRepository: authRepo,
-      // onboardingFinished: onboardingFinished ?? false,
-      onboardingFinished: false,
+      onboardingFinished: onboardingFinished ?? false,
     )),
-    //blocObserver: AppBlocObserver(),
   );
 }
 

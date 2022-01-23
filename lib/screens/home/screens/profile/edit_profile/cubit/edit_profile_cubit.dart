@@ -63,19 +63,14 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   void submit() async {
     emit(state.copyWith(status: EditProfileStatus.submitting));
     try {
-      //  getting existing user
       final user = _profileBloc.state.user;
-
-      //getting existing profile image url
       var profileImageUrl = user.photo;
 
-      //if user choose photo in edit profile page
       if (state.profileImage != null) {
         profileImageUrl = await _storageRepo.uploadProfileImageAndGiveUrl(
             url: profileImageUrl, image: state.profileImage!);
       }
 
-      //  updated user with current edit in edit page
       final updatedUser = user.copyWith(
         name: state.name,
         gender: state.gender,
@@ -83,13 +78,10 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         photo: profileImageUrl,
       );
 
-      //  storing updated info to firebase
       await _userRepo.updateUser(user: updatedUser);
 
-      //  updating the profile page with updated data
       _profileBloc.add(ProfileLoadEvent(userId: user.uid));
 
-      //success and removing progress
       emit(state.copyWith(status: EditProfileStatus.success));
     } catch (err) {
       emit(

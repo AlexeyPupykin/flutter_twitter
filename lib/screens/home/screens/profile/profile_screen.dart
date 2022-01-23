@@ -74,11 +74,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, profileState) {
         if (profileState.status == ProfileStatus.failure) {
-          //closing the existing dialog if exits during loading
           Navigator.of(context, rootNavigator: true).pop();
           BotToast.closeAllLoading();
           BotToast.showText(text: profileState.failure.message);
-          //showing the error dialog if error exists
 
           showDialog(
             context: context,
@@ -132,7 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               await Future.delayed(
                 Duration(milliseconds: 500),
               );
-              return; //true return will remove refresh indicator go away
+              return;
             },
             child: CustomScrollView(
               controller: _scrollController,

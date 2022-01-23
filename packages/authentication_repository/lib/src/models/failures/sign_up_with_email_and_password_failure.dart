@@ -1,13 +1,7 @@
-/// {@template sign_up_with_email_and_password_failure}
-/// Thrown if during the sign up process if a failure occurs.
-/// {@endtemplate}
 class SignUpWithEmailAndPasswordFailure implements Exception {
-  /// {@macro sign_up_with_email_and_password_failure}
   const SignUpWithEmailAndPasswordFailure(
       [this.message = 'An unknown exception occurred.']);
 
-  /// Create an authentication message from firebase authentication code.
-  /// https://pub.dev/documentation/firebase_auth/latest/firebase_auth/FirebaseAuth/createUserWithEmailAndPassword.html
   factory SignUpWithEmailAndPasswordFailure.fromCode(String code) {
     switch (code) {
       case 'invalid-email':
@@ -35,6 +29,5 @@ class SignUpWithEmailAndPasswordFailure implements Exception {
     }
   }
 
-  /// The associated error message.
   final String message;
 }

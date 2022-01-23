@@ -1,14 +1,7 @@
-/// {@template log_in_with_google_failure}
-/// Thrown during the sign in with google process if a failure occurs.
-/// https://pub.dev/documentation/firebase_auth/latest/firebase_auth/FirebaseAuth/signInWithCredential.html
-/// {@endtemplate}
 class LogInWithGoogleFailure implements Exception {
-  /// {@macro sign_up_with_email_and_password_failure}
   const LogInWithGoogleFailure(
       [this.message = 'An unknown exception occurred.']);
 
-  /// Create an authentication message from firebase authentication code.
-  /// https://pub.dev/documentation/firebase_auth/latest/firebase_auth/FirebaseAuth/createUserWithEmailAndPassword.html
   factory LogInWithGoogleFailure.fromCode(String code) {
     switch (code) {
       case 'account-exists-with-different-credential':
@@ -48,6 +41,5 @@ class LogInWithGoogleFailure implements Exception {
     }
   }
 
-  /// The associated error message.
   final String message;
 }

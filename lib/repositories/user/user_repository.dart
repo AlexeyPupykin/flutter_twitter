@@ -110,7 +110,6 @@ class UserRepo extends BaseUserRepo {
     final userFollowers = FirebaseConstants.userFollowers;
     final userFollowing = FirebaseConstants.userFollowing;
 
-    /// add followUser to user's collection
     _firebaseFirestore
         .collection(following)
         .doc(userId)
@@ -118,7 +117,6 @@ class UserRepo extends BaseUserRepo {
         .doc(followUserId)
         .set({});
 
-    /// add current user to followUser's userFollowers.
     _firebaseFirestore
         .collection(followers)
         .doc(followUserId)
@@ -141,7 +139,6 @@ class UserRepo extends BaseUserRepo {
       "followers": followUserDoc.get("followers") + 1,
     });
 
-    // Feed Logic
     final followUserPostsRef = _firebaseFirestore
         .collection(FirebaseConstants.posts)
         .doc(followUserId)
@@ -165,7 +162,6 @@ class UserRepo extends BaseUserRepo {
     final userFollowers = FirebaseConstants.userFollowers;
     final userFollowing = FirebaseConstants.userFollowing;
 
-    /// remove unfollowing user from user's userFollowing
     _firebaseFirestore
         .collection(following)
         .doc(userId)
@@ -173,7 +169,6 @@ class UserRepo extends BaseUserRepo {
         .doc(unfollowUserId)
         .delete();
 
-    /// remove user from unfollowUser's usersFollowers.
     _firebaseFirestore
         .collection(followers)
         .doc(unfollowUserId)
@@ -199,7 +194,6 @@ class UserRepo extends BaseUserRepo {
           : followUserDoc.get("followers") - 1,
     });
 
-    // Feed Logic
     final userFeedSnapshots = await _firebaseFirestore
         .collection(FirebaseConstants.feeds)
         .doc(userId)
@@ -219,12 +213,9 @@ class UserRepo extends BaseUserRepo {
     required String userId,
     required String otherUserId,
   }) async {
-    // final followers = FirebaseCollectionConstants.followers;
     final following = FirebaseConstants.following;
-    // final userFollowers = FirebaseCollectionConstants.userFollowers;
     final userFollowing = FirebaseConstants.userFollowing;
 
-    /// is otherUser in user's userFollowing
     final otherUserDoc = await _firebaseFirestore
         .collection(following)
         .doc(userId)
@@ -233,16 +224,4 @@ class UserRepo extends BaseUserRepo {
         .get();
     return otherUserDoc.exists;
   }
-
-  // @override
-  // Stream<List<User>> getAllFirebaseUsers() {
-  //   return _firebaseFirestore
-  //       .collection(FirebaseConstants.users)
-  //       .snapshots()
-  //       .map(
-  //         (querySnap) => querySnap.docs
-  //             .map((queryDocSnap) => User.fromDocument(queryDocSnap))
-  //             .toList(),
-  //       );
-  // }
 }

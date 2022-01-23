@@ -43,7 +43,6 @@ class StorageRepo extends BaseStorageRepo {
 
     var imageId = Uuid().v4();
 
-    //update profile image
     if (url.isNotEmpty) {
       final exp = RegExp(r'userProfile_(.*).jpg');
       imageId = exp.firstMatch(url)![1]!;

@@ -35,6 +35,4 @@ abstract class BaseUserRepo {
     required String userId,
     required String otherUserId,
   });
-
-  // Stream<List<User>> getAllFirebaseUsers();
 }

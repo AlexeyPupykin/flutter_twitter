@@ -122,7 +122,6 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
   }
 
   void _onFeedPaginate(FeedPaginateEvent event, Emitter<FeedState> emit) async {
-    print(104);
     emit(state.copyWith(status: FeedStatus.paginating));
     try {
       if (_authBloc.state.status == AuthStatus.authenticated) {
@@ -155,7 +154,6 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
         _commentPostCubit.updatePostComments(
             comments: comments, commentsCount: commentsCount);
 
-        //now updated post = our old fetched post + recently fetched post with pagination;
         final updatedPostList = List<PostModel?>.from(state.posts);
 
         for (var post in postListPaginated) {
@@ -165,7 +163,6 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
           }
         }
 
-        //for liked post
         final likedPostIds = await _postRepo.getLikedPostIds(
           userId: _authBloc.state.user.uid,
           posts: postListPaginated,

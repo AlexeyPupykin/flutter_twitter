@@ -197,7 +197,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       _userRepo.followUser(
           userId: _authBloc.state.user.uid, followUserId: state.user.uid);
-      // this increment is not just for ui we use cloud function to update db
+
       final updatedUser =
           state.user.copyWith(followers: state.user.followers! + 1);
       emit(state.copyWith(userModel: updatedUser, isFollowing: true));
@@ -220,7 +220,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       _userRepo.unfollowUser(
           userId: _authBloc.state.user.uid, unfollowUserId: state.user.uid);
-      //this increment is not just for ui we use cloud function to update db
+
       final updatedUser =
           state.user.copyWith(followers: state.user.followers! - 1);
       emit(state.copyWith(userModel: updatedUser, isFollowing: false));

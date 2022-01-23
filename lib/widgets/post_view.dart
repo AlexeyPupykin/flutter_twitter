@@ -40,9 +40,6 @@ class PostView extends StatelessWidget {
     return Container(
       color: AppColors.mainBackground,
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        // mainAxisSize: MainAxisSize.min,
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           _buildHeader(context),
           _buildContent(context),
@@ -110,9 +107,6 @@ class PostView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            // Divider(
-            //   thickness: 1,
-            // ),
             postAuthor
                 ? TextButton(
                     onPressed: () {

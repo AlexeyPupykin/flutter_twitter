@@ -408,7 +408,6 @@ class PostRepo extends BasePostRepo {
     String? userId,
     String? lastPostId,
   }) async {
-    //paginating logic
     QuerySnapshot postsSnap;
     if (lastPostId == null) {
       postsSnap = await _firebaseFirestore
@@ -447,7 +446,6 @@ class PostRepo extends BasePostRepo {
   Future<List<PostModel?>> getGuestFeed({
     String? lastPostId,
   }) async {
-    //paginating logic
     QuerySnapshot postsSnap;
     if (lastPostId == null) {
       postsSnap = await _firebaseFirestore
@@ -487,8 +485,6 @@ class PostRepo extends BasePostRepo {
     required PostModel post,
     required String userId,
   }) async {
-    // updating the post doc with likes
-    // we use here field value because if we use ("likes" : postModel.likes +1 ) it cannot handle concurrent like case
     _firebaseFirestore
         .collection(FirebaseConstants.posts)
         .doc(post.author.uid)
@@ -496,7 +492,6 @@ class PostRepo extends BasePostRepo {
         .doc(post.id)
         .update({"likes": FieldValue.increment(1)});
 
-    // keeping the userId in postLikes Sub collection of like collection with post id
     _firebaseFirestore
         .collection(FirebaseConstants.likes)
         .doc(post.id)
@@ -510,7 +505,6 @@ class PostRepo extends BasePostRepo {
     required PostModel post,
     required String userId,
   }) {
-    //decrementing the likes from post document
     _firebaseFirestore
         .collection(FirebaseConstants.posts)
         .doc(post.author.uid)
@@ -518,7 +512,6 @@ class PostRepo extends BasePostRepo {
         .doc(post.id)
         .update({"likes": FieldValue.increment(-1)});
 
-    //deleting userId from postLikes collection
     _firebaseFirestore
         .collection(FirebaseConstants.likes)
         .doc(post.id)
