@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter_twitter/helpers/helpers.dart';
@@ -20,7 +21,7 @@ class CreatePostScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Create Post"),
+        title: const Text("Создать пост"),
       ),
       body: BlocConsumer<CreatePostCubit, CreatePostState>(
         listener: (context, state) {
@@ -33,13 +34,13 @@ class CreatePostScreen extends StatelessWidget {
             _formKey.currentState!.reset();
             context.read<CreatePostCubit>().reset();
 
-            BotToast.showText(text: "Post Created Successfully");
+            BotToast.showText(text: "Пост создан успешно");
           } else if (state.status == CreatePostStatus.submitting) {
             showDialog(
               context: context,
               barrierDismissible: false,
               builder: (context) => LoadingDialog(
-                loadingMessage: 'Creating Post',
+                loadingMessage: 'Создание поста',
               ),
             );
           } else if (state.status == CreatePostStatus.failure) {
@@ -60,53 +61,58 @@ class CreatePostScreen extends StatelessWidget {
                 context: context,
                 builder: (buildContext) =>
                     _buildSelectImageDialog(buildContext, context)),
-            child: SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height - 150),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        if (state.status == CreatePostStatus.submitting)
-                          LinearProgressIndicator(),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(0, 20.0, 0, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              _buildCaptionInput(context),
-                            ],
-                          ),
+            child: Container(
+              color: AppColors.mainBackground,
+              padding: EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            if (state.status == CreatePostStatus.submitting)
+                              LinearProgressIndicator(),
+                            Container(
+                              height: MediaQuery.of(context).size.height / 2,
+                              width: double.infinity,
+                              color: Colors.grey[200],
+                              child: state.postImage != null
+                                  ? Container(
+                                      child: Image.file(
+                                        state.postImage!,
+                                        fit: BoxFit.fitWidth,
+                                      ),
+                                    )
+                                  : const Icon(
+                                      Icons.image_outlined,
+                                      color: Colors.grey,
+                                      size: 120,
+                                    ),
+                            ),
+                            SizedBox(height: 12.0),
+                            Container(
+                              padding: EdgeInsets.fromLTRB(0, 4.0, 0, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  _buildCaptionInput(context),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 12.0),
+                          ],
                         ),
-                        Container(
-                          height: MediaQuery.of(context).size.height / 2,
-                          width: double.infinity,
-                          color: Colors.grey[200],
-                          child: state.postImage != null
-                              ? Container(
-                                  child: Image.file(
-                                    state.postImage!,
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                )
-                              : const Icon(
-                                  Icons.image,
-                                  color: Colors.grey,
-                                  size: 120,
-                                ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 20.0),
-                          child: _buildPostButton(context, state),
-                        )
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 4.0),
+                    child: _buildPostButton(context, state),
+                  )
+                ],
               ),
             ),
           );
@@ -116,33 +122,49 @@ class CreatePostScreen extends StatelessWidget {
   }
 
   Widget _buildCaptionInput(BuildContext context) {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-        label: Text(
-          'Enter post caption',
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            color: Color.fromRGBO(153, 153, 153, 1),
-            fontFamily: 'Roboto',
-            fontSize: 14,
-            letterSpacing: 0,
-            fontWeight: FontWeight.normal,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(top: 0, bottom: 8),
+          child: Text(
+            'Описание к посту',
+            style: TextStyle(fontSize: 16),
           ),
         ),
-        labelStyle: TextStyle(color: Colors.grey[500]),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
-          borderSide: BorderSide(width: 2.0),
+        TextFormField(
+          keyboardType: TextInputType.text,
+          style: TextStyle(
+              fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w400),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: const BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            contentPadding:
+                EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(width: 2.0),
+            ),
+          ),
+          cursorColor: AppColors.mainBackground,
+          onChanged: (value) {
+            context.read<CreatePostCubit>().captionChanged(value);
+          },
+          validator: (value) {
+            return value!.trim().isEmpty
+                ? 'Описание к посту обязательно'
+                : null;
+          },
         ),
-      ),
-      onChanged: (value) {
-        context.read<CreatePostCubit>().captionChanged(value);
-      },
-      validator: (value) {
-        return value!.trim().isEmpty ? 'Caption cannot be empty' : null;
-      },
+      ],
     );
   }
 
@@ -151,11 +173,12 @@ class CreatePostScreen extends StatelessWidget {
       width: double.infinity,
       height: 48,
       child: ElevatedButton(
-        child: Text("Publish", style: TextStyle(fontSize: 14)),
+        child: Text("Опубликовать", style: TextStyle(fontSize: 18.0)),
         style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          backgroundColor: MaterialStateProperty.all<Color>(
-              Color.fromARGB(255, 128, 163, 255)),
+          foregroundColor:
+              MaterialStateProperty.all<Color>(AppColors.textMainColor),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(AppColors.liteGreenColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -178,19 +201,18 @@ class CreatePostScreen extends StatelessWidget {
       BuildContext buildContext, BuildContext mainContext) {
     return AlertDialog(
       content: Container(
-        height: MediaQuery.of(buildContext).size.height / 2,
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        height: 150,
+        width: MediaQuery.of(buildContext).size.width - 32,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
-              width: double.infinity,
               child: TextButton(
                 style: ButtonStyle(
                   foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.black87),
-                  overlayColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(20, 0, 0, 0)),
+                      MaterialStateProperty.all<Color>(AppColors.textMainColor),
+                  overlayColor:
+                      MaterialStateProperty.all<Color>(AppColors.greyColor),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -203,7 +225,7 @@ class CreatePostScreen extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "Camera",
+                      "Камера",
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
@@ -214,19 +236,22 @@ class CreatePostScreen extends StatelessWidget {
                 },
               ),
             ),
-            Divider(
-              thickness: 2,
+            VerticalDivider(
+              color: AppColors.textMainColor,
+              thickness: 1,
+              indent: 0,
+              endIndent: 0,
+              width: 50,
             ),
             SizedBox(
-              width: double.infinity,
               child: TextButton(
                 style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black87),
-                    overlayColor: MaterialStateProperty.all<Color>(
-                        Color.fromARGB(20, 0, 0, 0))),
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        AppColors.textMainColor),
+                    overlayColor:
+                        MaterialStateProperty.all<Color>(AppColors.greyColor)),
                 child: Column(
-                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Icon(
                       FontAwesomeIcons.image,
@@ -236,7 +261,7 @@ class CreatePostScreen extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "Gallery",
+                      "Галлерея",
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
@@ -257,7 +282,7 @@ class CreatePostScreen extends StatelessWidget {
     final pickedFile = await ImageHelper.pickImageFromCamera(
       context: context,
       cropStyle: CropStyle.rectangle,
-      title: 'Post Image',
+      title: 'Добавить изображение',
     );
     if (pickedFile != null) {
       context.read<CreatePostCubit>().postImageChanged(pickedFile);
@@ -268,7 +293,7 @@ class CreatePostScreen extends StatelessWidget {
     final pickedFile = await ImageHelper.pickImageFromGallery(
       context: context,
       cropStyle: CropStyle.rectangle,
-      title: 'Post Image',
+      title: 'Добавить изображение',
     );
     if (pickedFile != null) {
       context.read<CreatePostCubit>().postImageChanged(pickedFile);

@@ -7,7 +7,6 @@ import 'package:flutter_twitter/screens/home/screens/navbar/navbar.dart';
 import 'package:flutter_twitter/screens/home/screens/screens.dart';
 import 'package:flutter_twitter/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter_twitter/screens/splash/splash_screen.dart';
-import 'package:flutter_twitter/screens/home/screens/post/post_screen.dart';
 
 class CustomRoute {
   static Route onGenerateRoute(RouteSettings settings) {
@@ -50,9 +49,6 @@ class CustomRoute {
       case ProfileScreen.routeName:
         return ProfileScreen.route(
             args: settings.arguments as ProfileScreenArgs);
-
-      case PostScreen.routeName:
-        return PostScreen.route(args: settings.arguments as PostScreenArgs);
 
       case CommentScreen.routeName:
         return CommentScreen.route(

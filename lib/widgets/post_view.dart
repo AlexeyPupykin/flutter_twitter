@@ -7,7 +7,6 @@ import 'package:flutter_twitter/models/models.dart';
 import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
 import 'package:flutter_twitter/screens/home/screens/profile/profile_screen.dart';
 import 'package:flutter_twitter/screens/home/screens/screens.dart';
-import 'package:flutter_twitter/screens/home/screens/post/post_screen.dart';
 import 'package:flutter_twitter/widgets/user_profile_image.dart';
 import 'package:provider/src/provider.dart';
 
