@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 
 class ErrorDialog extends StatelessWidget {
   final String title;
@@ -34,12 +35,20 @@ class ErrorDialog extends StatelessWidget {
 
   AlertDialog _showAndroidDialog(BuildContext context) {
     return AlertDialog(
-      title: Text(title),
+      actionsAlignment: MainAxisAlignment.center,
+      backgroundColor: AppColors.darkGreenColor,
+      title: Center(child: Text(title)),
       content: Text(message),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text("Ok"),
+          child: const Text("OK"),
+          style: ButtonStyle(
+            foregroundColor:
+                MaterialStateProperty.all<Color>(AppColors.textMainColor),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(AppColors.liteGreenColor),
+          ),
         )
       ],
     );

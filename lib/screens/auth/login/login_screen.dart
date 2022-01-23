@@ -122,6 +122,7 @@ class _EmailInput extends StatelessWidget {
                   borderSide: BorderSide(width: 2.0),
                 ),
               ),
+              cursorColor: Colors.black,
             ),
           ],
         );
@@ -174,6 +175,7 @@ class _PasswordInput extends StatelessWidget {
                   borderSide: BorderSide(width: 5.0),
                 ),
               ),
+              cursorColor: Colors.black,
             ),
           ],
         );
@@ -196,7 +198,9 @@ class _SignInButton extends StatelessWidget {
                 width: double.infinity,
                 height: 52.0,
                 child: ElevatedButton(
-                  child: Text("Войти", style: TextStyle(fontSize: 18.0)),
+                  child: Text("Войти",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.w400)),
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all<Color>(
                         AppColors.textMainColor),

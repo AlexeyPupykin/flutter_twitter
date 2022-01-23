@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ConfirmationDialog extends StatelessWidget {
@@ -21,16 +22,16 @@ class ConfirmationDialog extends StatelessWidget {
   const ConfirmationDialog({
     required this.cancelOnPressed,
     required this.continueOnPressed,
-    this.icon = FontAwesomeIcons.exclamationTriangle,
-    this.iconColor = Colors.red,
-    this.title = "Are you sure?",
+    this.icon = Icons.dangerous_rounded,
+    this.iconColor = AppColors.darkRedColor,
+    this.title = "Вы уверены?",
     this.message = "",
-    this.cancelText = "Cancel",
-    this.cancelBackgroundColor = Colors.red,
-    this.cancelForegroundColor = Colors.white,
-    this.continueText = "Continue",
-    this.continueBackgroundColor = Colors.green,
-    this.continueForegroundColor = Colors.white,
+    this.cancelText = "Отмена",
+    this.cancelBackgroundColor = AppColors.darkRedColor,
+    this.cancelForegroundColor = AppColors.textMainColor,
+    this.continueText = "Подтвердить",
+    this.continueBackgroundColor = AppColors.liteGreenColor,
+    this.continueForegroundColor = AppColors.textMainColor,
   });
 
   @override
@@ -75,9 +76,9 @@ class ConfirmationDialog extends StatelessWidget {
       child: Text(continueText, style: TextStyle(fontSize: 14)),
       style: ButtonStyle(
         foregroundColor:
-        MaterialStateProperty.all<Color>(continueForegroundColor),
+            MaterialStateProperty.all<Color>(continueForegroundColor),
         backgroundColor:
-        MaterialStateProperty.all<Color>(continueBackgroundColor),
+            MaterialStateProperty.all<Color>(continueBackgroundColor),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
@@ -89,14 +90,21 @@ class ConfirmationDialog extends StatelessWidget {
     );
 
     return AlertDialog(
+      backgroundColor: AppColors.darkGreenColor,
       actionsAlignment: MainAxisAlignment.spaceBetween,
       actionsPadding: EdgeInsets.symmetric(horizontal: 16),
-      title: Row(children: [Icon(icon, color: iconColor,), SizedBox(width: 36,), Text(title)]),
+      title: Row(children: [
+        Icon(
+          icon,
+          color: iconColor,
+        ),
+        SizedBox(
+          width: 36,
+        ),
+        Text(title)
+      ]),
       content: Text(message),
-      actions: [
-        cancelButton,
-        continueButton
-      ],
+      actions: [cancelButton, continueButton],
     );
   }
 }

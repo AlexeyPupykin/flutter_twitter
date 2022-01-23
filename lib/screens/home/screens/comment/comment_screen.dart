@@ -91,7 +91,6 @@ class _CommentScreenState extends State<CommentScreen> {
     }, builder: (context, commentState) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Post'),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: AppColors.textMainColor),
             onPressed: () {
@@ -104,29 +103,37 @@ class _CommentScreenState extends State<CommentScreen> {
           color: AppColors.mainBackground,
           child: _buildCommentBottomSheet(commentState),
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-                child: commentState.post == null
-                    ? CircularProgressIndicator()
-                    : PostView(
-                        isLiked: commentState.isLiked,
-                        post: commentState.post!,
-                        lastComment: null,
-                        onLike: () {
-                          if (context.read<AuthBloc>().state.user.uid.isEmpty) {
-                            BotToast.showText(text: "login to like");
-                          } else {
-                            context.read<CommentBloc>()..add(OnLikeEvent());
-                          }
-                        },
-                        postAuthor: commentState.postAuthor,
-                        onPostDelete: commentState.onPostDelete,
-                        likes: commentState.likes,
-                        comments: commentState.comments,
-                      )),
-            _buildComments(commentState)
-          ],
+        body: Container(
+          color: Colors.black,
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                  child: commentState.post == null
+                      ? CircularProgressIndicator()
+                      : PostView(
+                          isLiked: commentState.isLiked,
+                          post: commentState.post!,
+                          lastComment: null,
+                          onLike: () {
+                            if (context
+                                .read<AuthBloc>()
+                                .state
+                                .user
+                                .uid
+                                .isEmpty) {
+                              BotToast.showText(text: "login to like");
+                            } else {
+                              context.read<CommentBloc>()..add(OnLikeEvent());
+                            }
+                          },
+                          postAuthor: commentState.postAuthor,
+                          onPostDelete: commentState.onPostDelete,
+                          likes: commentState.likes,
+                          comments: commentState.comments,
+                        )),
+              _buildComments(commentState)
+            ],
+          ),
         ),
       );
     });
@@ -135,70 +142,74 @@ class _CommentScreenState extends State<CommentScreen> {
   Widget _buildComments(CommentState state) {
     return state.status == CommentStatus.loading
         ? Center(child: const CircularProgressIndicator())
-        : SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              final comment = state.commentList[index];
-              return ListTile(
-                leading: GestureDetector(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    ProfileScreen.routeName,
-                    arguments: ProfileScreenArgs(userId: comment!.author.uid),
+        : Container(
+            child: SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final comment = state.commentList[index];
+                return ListTile(
+                  leading: GestureDetector(
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      ProfileScreen.routeName,
+                      arguments: ProfileScreenArgs(userId: comment!.author.uid),
+                    ),
+                    child: UserProfileImage(
+                      radius: 15,
+                      profileImageURL: comment!.author.photo!,
+                    ),
                   ),
-                  child: UserProfileImage(
-                    radius: 15,
-                    profileImageURL: comment!.author.photo!,
-                  ),
-                ),
-                title: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: comment.author.username,
-                        style: const TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      const TextSpan(text: " "),
-                      TextSpan(
-                        text: comment.content,
-                      ),
-                    ],
-                  ),
-                ),
-                subtitle: Text(
-                  '${comment.dateTime.timeAgoExt()}',
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                trailing: context.read<AuthBloc>().state.user.uid ==
-                            comment.author.uid ||
-                        state.post!.author.uid ==
-                            context.read<AuthBloc>().state.user.uid
-                    ? IconButton(
-                        constraints: BoxConstraints(maxHeight: 18),
-                        padding: new EdgeInsets.all(0),
-                        iconSize: 18,
-                        icon: Icon(
-                          FontAwesomeIcons.trash,
-                          color: state.status == CommentStatus.submitting
-                              ? Colors.blueAccent
-                              : Colors.black87,
+                  title: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: comment.author.username,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 18.0),
                         ),
-                        onPressed: () {
-                          context.read<CommentBloc>().add(
-                                DeleteCommentEvent(
-                                    post: state.post!,
-                                    comment: comment,
-                                    previousComment: index == 0
-                                        ? null
-                                        : state.commentList.last),
-                              );
-                        },
-                      )
-                    : null,
-              );
-            }, childCount: state.comments),
+                        const TextSpan(text: " "),
+                        TextSpan(
+                            text: comment.content,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400, fontSize: 18.0)),
+                      ],
+                    ),
+                  ),
+                  subtitle: Text(
+                    '${comment.dateTime.timeAgoExt()}',
+                    style: TextStyle(
+                      color: AppColors.greyColor,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  trailing: context.read<AuthBloc>().state.user.uid ==
+                              comment.author.uid ||
+                          state.post!.author.uid ==
+                              context.read<AuthBloc>().state.user.uid
+                      ? IconButton(
+                          constraints: BoxConstraints(maxHeight: 18),
+                          padding: new EdgeInsets.all(0),
+                          iconSize: 18,
+                          icon: Icon(
+                            FontAwesomeIcons.trashAlt,
+                            color: state.status == CommentStatus.submitting
+                                ? Colors.white38
+                                : Colors.white,
+                          ),
+                          onPressed: () {
+                            context.read<CommentBloc>().add(
+                                  DeleteCommentEvent(
+                                      post: state.post!,
+                                      comment: comment,
+                                      previousComment: index == 0
+                                          ? null
+                                          : state.commentList.last),
+                                );
+                          },
+                        )
+                      : null,
+                );
+              }, childCount: state.comments),
+            ),
           );
   }
 
