@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:megaspice/common/app_colors.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 
 class UserProfileImage extends StatelessWidget {
   final double radius;

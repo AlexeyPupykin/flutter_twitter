@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:megaspice/blocs/blocs.dart';
-import 'package:megaspice/constants/firebase_constants.dart';
-import 'package:megaspice/cubit/cubits.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/repositories/repositories.dart';
+import 'package:flutter_twitter/blocs/blocs.dart';
+import 'package:flutter_twitter/constants/firebase_constants.dart';
+import 'package:flutter_twitter/cubit/cubits.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
 
 part 'feed_event.dart';
 

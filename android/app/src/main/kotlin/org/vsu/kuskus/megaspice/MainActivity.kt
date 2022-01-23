@@ -1,4 +1,4 @@
-package org.vsu.kuskus.megaspice
+package org.vsu.flutter.twitter
 
 import io.flutter.embedding.android.FlutterActivity
 

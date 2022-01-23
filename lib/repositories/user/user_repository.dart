@@ -1,7 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:megaspice/constants/firebase_constants.dart';
-import 'package:megaspice/repositories/repositories.dart';
+import 'package:flutter_twitter/constants/firebase_constants.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
 
 class UserRepo extends BaseUserRepo {
   final FirebaseFirestore _firebaseFirestore;

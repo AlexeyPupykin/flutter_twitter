@@ -1,7 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:megaspice/constants/firebase_constants.dart';
+import 'package:flutter_twitter/constants/firebase_constants.dart';
 
 class CommentModel extends Equatable {
   final String? id;
@@ -38,7 +38,9 @@ class CommentModel extends Equatable {
   List<Object?> get props => [id, postId, content, author, dateTime];
 
   Map<String, dynamic> toDocuments() {
-    final authorId = FirebaseFirestore.instance.collection(FirebaseConstants.users).doc(author.uid);
+    final authorId = FirebaseFirestore.instance
+        .collection(FirebaseConstants.users)
+        .doc(author.uid);
     return {
       'postId': postId,
       'content': content,

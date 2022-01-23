@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:megaspice/extensions/datetime_extensions.dart';
+import 'package:flutter_twitter/extensions/datetime_extensions.dart';
 
 class ProfileInfo extends StatelessWidget {
   final String fullName;

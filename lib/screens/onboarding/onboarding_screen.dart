@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:megaspice/screens/home/screens/navbar/navbar.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/navbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/onboarding_screen_data.dart';

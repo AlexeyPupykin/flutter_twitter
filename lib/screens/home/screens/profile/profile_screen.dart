@@ -2,12 +2,12 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:megaspice/blocs/blocs.dart';
-import 'package:megaspice/common/app_colors.dart';
-import 'package:megaspice/cubit/comment_post_cubit/comment_post_cubit.dart';
-import 'package:megaspice/cubit/like_post_cubit/like_post_cubit.dart';
-import 'package:megaspice/repositories/repositories.dart';
-import 'package:megaspice/widgets/widgets.dart';
+import 'package:flutter_twitter/blocs/blocs.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
+import 'package:flutter_twitter/cubit/comment_post_cubit/comment_post_cubit.dart';
+import 'package:flutter_twitter/cubit/like_post_cubit/like_post_cubit.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
+import 'package:flutter_twitter/widgets/widgets.dart';
 
 import 'profile_bloc/profile_bloc.dart';
 import 'widgets/widgets.dart';

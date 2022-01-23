@@ -1,1 +1,1 @@
-megaspice
+flutter_twitter

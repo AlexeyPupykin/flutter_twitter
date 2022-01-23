@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/blocs/auth_bloc/auth_bloc.dart';
-import 'package:megaspice/cubit/comment_post_cubit/comment_post_cubit.dart';
-import 'package:megaspice/cubit/like_post_cubit/like_post_cubit.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/repositories/repositories.dart';
+import 'package:flutter_twitter/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter_twitter/cubit/comment_post_cubit/comment_post_cubit.dart';
+import 'package:flutter_twitter/cubit/like_post_cubit/like_post_cubit.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
 
 part 'profile_state.dart';
 
@@ -68,7 +68,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       if (_postsSubscription != null) {
         _postsSubscription!.cancel();
       }
-      _postsSubscription = _postRepo.getUserPostsStream(userId: event.userId).listen((futurePostList) async {
+      _postsSubscription = _postRepo
+          .getUserPostsStream(userId: event.userId)
+          .listen((futurePostList) async {
         posts = await Future.wait(futurePostList);
         add(
           ProfileUpdatePostsEvent(posts: posts, userId: user.uid),
@@ -236,14 +238,21 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  void _onProfileCreatePost(ProfileCreatePostEvent event, Emitter<ProfileState> emit) async {
+  void _onProfileCreatePost(
+      ProfileCreatePostEvent event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(status: ProfileStatus.loading));
     try {
-      emit(state.copyWith(status: ProfileStatus.loaded, userModel: event.post.author.copyWith(postsCount: event.post.author.posts == null ? event.post.author.posts : event.post.author.posts! + 1)));
+      emit(state.copyWith(
+          status: ProfileStatus.loaded,
+          userModel: event.post.author.copyWith(
+              postsCount: event.post.author.posts == null
+                  ? event.post.author.posts
+                  : event.post.author.posts! + 1)));
     } on FirebaseException catch (e) {
       print("Firebase Error: ${e.message}");
       emit(state.copyWith(
-          failure: Failure(message: e.message!), status: ProfileStatus.failure));
+          failure: Failure(message: e.message!),
+          status: ProfileStatus.failure));
     } catch (e) {
       print("Something Unknown Error: $e");
       emit(state.copyWith(
@@ -253,37 +262,49 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  void _onProfileDeletePost(ProfileDeletePostEvent event, Emitter<ProfileState> emit) async {
+  void _onProfileDeletePost(
+      ProfileDeletePostEvent event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(status: ProfileStatus.loading));
     try {
       final currentUserId = _authBloc.state.user.uid;
       if (currentUserId == event.post.author.uid) {
         _postRepo.deletePost(post: event.post);
 
-        var updatedComments = Map<String, CommentModel?>.from(_commentPostCubit.state.comments);
+        var updatedComments =
+            Map<String, CommentModel?>.from(_commentPostCubit.state.comments);
         updatedComments.remove(event.post.id);
 
-        var updatedCommentsCount = Map<String, int>.from(_commentPostCubit.state.commentsCount);
+        var updatedCommentsCount =
+            Map<String, int>.from(_commentPostCubit.state.commentsCount);
         updatedCommentsCount.remove(event.post.id);
         _commentPostCubit.updatePostComments(
             comments: updatedComments, commentsCount: updatedCommentsCount);
 
-        var updatedLikedPostIds = Set<String>.from(_likePostCubit.state.likedPostIds);
+        var updatedLikedPostIds =
+            Set<String>.from(_likePostCubit.state.likedPostIds);
         updatedLikedPostIds.remove(event.post.id);
 
-        var updatedPostsLikes = Map<String, int>.from(_likePostCubit.state.postsLikes);
+        var updatedPostsLikes =
+            Map<String, int>.from(_likePostCubit.state.postsLikes);
         updatedPostsLikes.remove(event.post.id);
         _likePostCubit.updateLikedPosts(
             postIds: updatedLikedPostIds, postsLikes: updatedPostsLikes);
 
         var updatedPosts = List<PostModel?>.from(state.posts);
         updatedPosts.remove(event.post);
-        emit(state.copyWith(posts: updatedPosts, status: ProfileStatus.loaded, userModel: event.post.author.copyWith(postsCount: event.post.author.posts == null ? event.post.author.posts : event.post.author.posts! - 1)));
+        emit(state.copyWith(
+            posts: updatedPosts,
+            status: ProfileStatus.loaded,
+            userModel: event.post.author.copyWith(
+                postsCount: event.post.author.posts == null
+                    ? event.post.author.posts
+                    : event.post.author.posts! - 1)));
       }
     } on FirebaseException catch (e) {
       print("Firebase Error: ${e.message}");
       emit(state.copyWith(
-          failure: Failure(message: e.message!), status: ProfileStatus.failure));
+          failure: Failure(message: e.message!),
+          status: ProfileStatus.failure));
     } catch (e) {
       print("Something Unknown Error: $e");
       emit(state.copyWith(

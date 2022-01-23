@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/blocs/auth_bloc/auth_bloc.dart';
-import 'package:megaspice/blocs/blocs.dart';
-import 'package:megaspice/config/custom_router.dart';
-import 'package:megaspice/cubit/comment_post_cubit/comment_post_cubit.dart';
-import 'package:megaspice/cubit/like_post_cubit/like_post_cubit.dart';
-import 'package:megaspice/repositories/post/post_repository.dart';
-import 'package:megaspice/repositories/repositories.dart';
-import 'package:megaspice/screens/auth/login/login_screen.dart';
-import 'package:megaspice/screens/home/screens/create_post/cubit/create_post_cubit.dart';
-import 'package:megaspice/screens/home/screens/feed/bloc/feed_bloc.dart';
-import 'package:megaspice/screens/home/screens/navbar/cubit/NavBarCubit.dart';
-import 'package:megaspice/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
+import 'package:flutter_twitter/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter_twitter/blocs/blocs.dart';
+import 'package:flutter_twitter/config/custom_router.dart';
+import 'package:flutter_twitter/cubit/comment_post_cubit/comment_post_cubit.dart';
+import 'package:flutter_twitter/cubit/like_post_cubit/like_post_cubit.dart';
+import 'package:flutter_twitter/repositories/post/post_repository.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
+import 'package:flutter_twitter/screens/auth/login/login_screen.dart';
+import 'package:flutter_twitter/screens/home/screens/create_post/cubit/create_post_cubit.dart';
+import 'package:flutter_twitter/screens/home/screens/feed/bloc/feed_bloc.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
 
 import '../../screens.dart';
 

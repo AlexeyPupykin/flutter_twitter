@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/blocs/blocs.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/repositories/post/post_repository.dart';
+import 'package:flutter_twitter/blocs/blocs.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/repositories/post/post_repository.dart';
 
 part 'like_post_state.dart';
 

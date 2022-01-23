@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/cubit/cubits.dart';
-import 'package:megaspice/models/models.dart';
+import 'package:flutter_twitter/cubit/cubits.dart';
+import 'package:flutter_twitter/models/models.dart';
 
 part 'post_state.dart';
 

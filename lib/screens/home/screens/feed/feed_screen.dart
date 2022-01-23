@@ -1,12 +1,12 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/blocs/auth_bloc/auth_bloc.dart';
-import 'package:megaspice/cubit/cubits.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/repositories/repositories.dart';
-import 'package:megaspice/screens/home/screens/navbar/cubit/NavBarCubit.dart';
-import 'package:megaspice/widgets/widgets.dart';
+import 'package:flutter_twitter/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter_twitter/cubit/cubits.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/widgets/widgets.dart';
 
 import 'bloc/feed_bloc.dart';
 

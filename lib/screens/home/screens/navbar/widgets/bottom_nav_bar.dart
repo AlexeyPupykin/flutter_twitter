@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:megaspice/common/app_colors.dart';
-import 'package:megaspice/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final Map<NavBarItem, IconData> items;

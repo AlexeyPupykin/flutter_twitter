@@ -3,9 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:megaspice/common/app_colors.dart';
-import 'package:megaspice/repositories/repositories.dart';
-import 'package:megaspice/screens/auth/sign_up/sign_up_screen.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
+import 'package:flutter_twitter/screens/auth/sign_up/sign_up_screen.dart';
 
 import 'cubit/login_cubit.dart';
 
@@ -41,6 +41,7 @@ class LoginScreen extends StatelessWidget {
         return WillPopScope(
           onWillPop: () async => false,
           child: Scaffold(
+            backgroundColor: AppColors.mainBackground,
             body: WillPopScope(
               onWillPop: () async => false,
               child: Padding(
@@ -229,7 +230,8 @@ class _SignUpNavLink extends StatelessWidget {
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           children: [
             const TextSpan(
-                text: 'Нет аккаунта? ', style: TextStyle(color: Colors.black)),
+                text: 'Нет аккаунта? ',
+                style: TextStyle(color: AppColors.textMainColor)),
             TextSpan(
               text: 'Создать аккаунт',
               style: const TextStyle(color: Colors.blue),

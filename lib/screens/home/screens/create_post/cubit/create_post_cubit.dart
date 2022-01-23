@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/blocs/blocs.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/repositories/repositories.dart';
-import 'package:megaspice/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
+import 'package:flutter_twitter/blocs/blocs.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
+import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
 
 part 'create_post_state.dart';
 

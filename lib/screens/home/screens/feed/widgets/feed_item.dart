@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:megaspice/models/models.dart';
+import 'package:flutter_twitter/models/models.dart';
 
 class FeedItem extends StatelessWidget {
   const FeedItem({Key? key, required this.post}) : super(key: key);

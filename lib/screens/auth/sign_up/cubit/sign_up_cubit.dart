@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-import 'package:megaspice/repositories/user/user_repository.dart';
+import 'package:flutter_twitter/repositories/user/user_repository.dart';
 
 part 'sign_up_state.dart';
 
@@ -34,8 +34,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void confirmedPasswordChanged(String value) {
-    final confirmedPassword = ConfirmedPassword.dirty(
-        password: state.password.value, value: value);
+    final confirmedPassword =
+        ConfirmedPassword.dirty(password: state.password.value, value: value);
     emit(state.copyWith(
       confirmedPassword: confirmedPassword,
       status: Formz.validate([state.email, state.password, confirmedPassword]),
@@ -43,8 +43,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   Future<void> signUpFormSubmitted() async {
-    if (!state.status.isValidated)
-      return;
+    if (!state.status.isValidated) return;
     emit(state.copyWith(
       status: FormzStatus.submissionInProgress,
     ));

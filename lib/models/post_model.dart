@@ -1,7 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:megaspice/constants/firebase_constants.dart';
+import 'package:flutter_twitter/constants/firebase_constants.dart';
 
 import 'models.dart';
 
@@ -45,10 +45,13 @@ class PostModel extends Equatable {
   }
 
   @override
-  List<Object> get props => [caption, imageUrl, author, likes, comments, dateTime];
+  List<Object> get props =>
+      [caption, imageUrl, author, likes, comments, dateTime];
 
   Map<String, dynamic> toDocuments() {
-    final authorDocsRef = FirebaseFirestore.instance.collection(FirebaseConstants.users).doc(author.uid);
+    final authorDocsRef = FirebaseFirestore.instance
+        .collection(FirebaseConstants.users)
+        .doc(author.uid);
     return {
       'caption': caption,
       'imageUrl': imageUrl,

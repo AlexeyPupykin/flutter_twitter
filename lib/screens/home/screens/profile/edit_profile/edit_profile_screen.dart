@@ -6,14 +6,14 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:megaspice/blocs/auth_bloc/auth_bloc.dart';
-import 'package:megaspice/cubit/cubits.dart';
-import 'package:megaspice/helpers/helpers.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/repositories/repositories.dart';
-import 'package:megaspice/screens/home/screens/profile/edit_profile/cubit/edit_profile_cubit.dart';
-import 'package:megaspice/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
-import 'package:megaspice/widgets/widgets.dart';
+import 'package:flutter_twitter/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter_twitter/cubit/cubits.dart';
+import 'package:flutter_twitter/helpers/helpers.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
+import 'package:flutter_twitter/screens/home/screens/profile/edit_profile/cubit/edit_profile_cubit.dart';
+import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
+import 'package:flutter_twitter/widgets/widgets.dart';
 
 class EditProfileScreenArgs {
   final BuildContext context;
@@ -207,11 +207,17 @@ class EditProfileScreen extends StatelessWidget {
                                         return ConfirmationDialog(
                                             message:
                                                 "This account will be disabled!",
-                                            cancelOnPressed: () => Navigator.of(context).pop(),
+                                            cancelOnPressed: () =>
+                                                Navigator.of(context).pop(),
                                             continueOnPressed: () {
-                                              context.read<UserRepo>().disableUser(user: user);
-                                              context.read<AuthBloc>().add(AuthDeleteRequestedEvent());
-                                              context.read<LikePostCubit>().clearAllLikedPost();
+                                              context
+                                                  .read<UserRepo>()
+                                                  .disableUser(user: user);
+                                              context.read<AuthBloc>().add(
+                                                  AuthDeleteRequestedEvent());
+                                              context
+                                                  .read<LikePostCubit>()
+                                                  .clearAllLikedPost();
                                             });
                                       });
                                 },

@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/blocs/blocs.dart';
-import 'package:megaspice/constants/firebase_constants.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/repositories/repositories.dart';
+import 'package:flutter_twitter/blocs/blocs.dart';
+import 'package:flutter_twitter/constants/firebase_constants.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
 
 part 'comment_post_state.dart';
 
@@ -14,8 +14,7 @@ class CommentPostCubit extends Cubit<CommentPostState> {
   CommentPostCubit({
     required PostRepo postRepo,
     required AuthBloc authBloc,
-  })
-      : _postRepo = postRepo,
+  })  : _postRepo = postRepo,
         _authBloc = authBloc,
         super(CommentPostState.initial());
 
@@ -24,8 +23,10 @@ class CommentPostCubit extends Cubit<CommentPostState> {
     required Map<String, int> commentsCount,
   }) {
     emit(state.copyWith(
-      comments: Map<String, CommentModel?>.from(state.comments)..addAll(comments),
-      commentsCount: Map<String, int>.from(state.commentsCount)..addAll(commentsCount),
+      comments: Map<String, CommentModel?>.from(state.comments)
+        ..addAll(comments),
+      commentsCount: Map<String, int>.from(state.commentsCount)
+        ..addAll(commentsCount),
     ));
   }
 
@@ -46,7 +47,8 @@ class CommentPostCubit extends Cubit<CommentPostState> {
     } else {
       updatedCommentsCount[post.id!] = 1;
     }
-    emit(state.copyWith(comments: updatedComments, commentsCount: updatedCommentsCount));
+    emit(state.copyWith(
+        comments: updatedComments, commentsCount: updatedCommentsCount));
   }
 
   void deleteComment({
@@ -65,7 +67,8 @@ class CommentPostCubit extends Cubit<CommentPostState> {
     if (updatedCommentsCount.containsKey(post.id!)) {
       updatedCommentsCount[post.id!] = updatedCommentsCount[post.id!]! - 1;
     }
-    emit(state.copyWith(comments: updatedComments, commentsCount: updatedCommentsCount));
+    emit(state.copyWith(
+        comments: updatedComments, commentsCount: updatedCommentsCount));
   }
 
   void clearAllComments() {

@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/repositories/repositories.dart';
-import 'package:megaspice/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
+import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
 
 part 'edit_profile_state.dart';
 
@@ -59,7 +59,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   void disableUser(User user) {
     _userRepo.updateUser(user: user.copyWith(disabled: true));
   }
-  
+
   void submit() async {
     emit(state.copyWith(status: EditProfileStatus.submitting));
     try {
@@ -95,7 +95,8 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       emit(
         state.copyWith(
           status: EditProfileStatus.error,
-          failure: Failure(message: "unable to update profile: " + err.toString()),
+          failure:
+              Failure(message: "unable to update profile: " + err.toString()),
         ),
       );
     }

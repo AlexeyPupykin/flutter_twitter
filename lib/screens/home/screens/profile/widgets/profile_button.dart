@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:megaspice/blocs/blocs.dart';
-import 'package:megaspice/common/app_colors.dart';
-import 'package:megaspice/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
-import 'package:megaspice/screens/home/screens/screens.dart';
+import 'package:flutter_twitter/blocs/blocs.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
+import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
+import 'package:flutter_twitter/screens/home/screens/screens.dart';
 
 class ProfileButton extends StatelessWidget {
   final bool? isCurrentUser;

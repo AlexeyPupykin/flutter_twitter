@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
-import 'package:megaspice/common/app_colors.dart';
-import 'package:megaspice/repositories/repositories.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
 
 import 'cubit/sign_up_cubit.dart';
 
@@ -22,15 +22,13 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: BlocProvider<SignUpCubit>(
-          create: (_) => SignUpCubit(
-            context.read<AuthRepo>(),
-            context.read<UserRepo>(),
-          ),
-          child: const SignUpForm(),
+      backgroundColor: AppColors.mainBackground,
+      body: BlocProvider<SignUpCubit>(
+        create: (_) => SignUpCubit(
+          context.read<AuthRepo>(),
+          context.read<UserRepo>(),
         ),
+        child: const SignUpForm(),
       ),
     );
   }
@@ -66,10 +64,11 @@ class SignUpForm extends StatelessWidget {
                   _SignUpLabel(),
                   const SizedBox(height: 36.0),
                   _EmailInput(),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: 8.0),
                   _PasswordInput(),
-                  const SizedBox(height: 24.0),
+                  const SizedBox(height: 8.0),
                   _ConfirmPasswordInput(),
+                  const SizedBox(height: 24.0),
                 ],
               ),
             )),
@@ -105,6 +104,7 @@ class _EmailInput extends StatelessWidget {
               onChanged: (email) =>
                   context.read<SignUpCubit>().emailChanged(email),
               keyboardType: TextInputType.emailAddress,
+              style: const TextStyle(fontSize: 22.0, color: Colors.black),
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
@@ -292,7 +292,7 @@ class _SignInNavLink extends StatelessWidget {
           children: [
             const TextSpan(
                 text: 'Уже есть аккаунт? ',
-                style: TextStyle(color: Colors.black)),
+                style: TextStyle(color: AppColors.textMainColor)),
             TextSpan(
               text: 'Войти',
               style: const TextStyle(color: Colors.blue),

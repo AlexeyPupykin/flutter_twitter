@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:megaspice/screens/auth/login/login_screen.dart';
-import 'package:megaspice/screens/auth/sign_up/sign_up_screen.dart';
-import 'package:megaspice/screens/home/home_screen.dart';
-import 'package:megaspice/screens/home/screens/navbar/navbar.dart';
-import 'package:megaspice/screens/home/screens/screens.dart';
-import 'package:megaspice/screens/onboarding/onboarding_screen.dart';
-import 'package:megaspice/screens/splash/splash_screen.dart';
-import 'package:megaspice/screens/home/screens/post/post_screen.dart';
+import 'package:flutter_twitter/screens/auth/login/login_screen.dart';
+import 'package:flutter_twitter/screens/auth/sign_up/sign_up_screen.dart';
+import 'package:flutter_twitter/screens/home/home_screen.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/navbar.dart';
+import 'package:flutter_twitter/screens/home/screens/screens.dart';
+import 'package:flutter_twitter/screens/onboarding/onboarding_screen.dart';
+import 'package:flutter_twitter/screens/splash/splash_screen.dart';
+import 'package:flutter_twitter/screens/home/screens/post/post_screen.dart';
 
 class CustomRoute {
   static Route onGenerateRoute(RouteSettings settings) {

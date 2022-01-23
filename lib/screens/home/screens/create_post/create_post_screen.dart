@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:megaspice/helpers/helpers.dart';
-import 'package:megaspice/screens/home/screens/create_post/cubit/create_post_cubit.dart';
-import 'package:megaspice/screens/home/screens/navbar/cubit/NavBarCubit.dart';
-import 'package:megaspice/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
-import 'package:megaspice/widgets/widgets.dart';
-
+import 'package:flutter_twitter/helpers/helpers.dart';
+import 'package:flutter_twitter/screens/home/screens/create_post/cubit/create_post_cubit.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
+import 'package:flutter_twitter/widgets/widgets.dart';
 
 class CreatePostScreen extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -27,8 +26,9 @@ class CreatePostScreen extends StatelessWidget {
         listener: (context, state) {
           if (state.status == CreatePostStatus.success) {
             context.read<NavBarCubit>().updateSelectedItem(NavBarItem.profile);
-            context.read<ProfileBloc>()..add(ProfileLoadEvent(
-                userId: context.read<ProfileBloc>().state.user.uid));
+            context.read<ProfileBloc>()
+              ..add(ProfileLoadEvent(
+                  userId: context.read<ProfileBloc>().state.user.uid));
             Navigator.of(context, rootNavigator: true).pop();
             _formKey.currentState!.reset();
             context.read<CreatePostCubit>().reset();
@@ -138,14 +138,10 @@ class CreatePostScreen extends StatelessWidget {
         ),
       ),
       onChanged: (value) {
-        context
-            .read<CreatePostCubit>()
-            .captionChanged(value);
+        context.read<CreatePostCubit>().captionChanged(value);
       },
       validator: (value) {
-        return value!.trim().isEmpty
-            ? 'Caption cannot be empty'
-            : null;
+        return value!.trim().isEmpty ? 'Caption cannot be empty' : null;
       },
     );
   }

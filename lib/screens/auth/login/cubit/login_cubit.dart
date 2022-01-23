@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-import 'package:megaspice/repositories/repositories.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
 
 part 'login_state.dart';
 

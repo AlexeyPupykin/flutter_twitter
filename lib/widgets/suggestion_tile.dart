@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/screens/home/screens/screens.dart';
-import 'package:megaspice/widgets/widgets.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/screens/home/screens/screens.dart';
+import 'package:flutter_twitter/widgets/widgets.dart';
 
 class SuggestionTile extends StatelessWidget {
   final User user;
@@ -30,7 +30,8 @@ class SuggestionTile extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   user.username ?? "unknown",
-                  style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 15),
                 ),
               ],
             ),

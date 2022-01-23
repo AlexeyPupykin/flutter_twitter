@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:megaspice/common/app_colors.dart';
-import 'package:megaspice/extensions/datetime_extensions.dart';
-import 'package:megaspice/models/models.dart';
-import 'package:megaspice/screens/home/screens/navbar/cubit/NavBarCubit.dart';
-import 'package:megaspice/screens/home/screens/profile/profile_screen.dart';
-import 'package:megaspice/screens/home/screens/screens.dart';
-import 'package:megaspice/screens/home/screens/post/post_screen.dart';
-import 'package:megaspice/widgets/user_profile_image.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
+import 'package:flutter_twitter/extensions/datetime_extensions.dart';
+import 'package:flutter_twitter/models/models.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/screens/home/screens/profile/profile_screen.dart';
+import 'package:flutter_twitter/screens/home/screens/screens.dart';
+import 'package:flutter_twitter/screens/home/screens/post/post_screen.dart';
+import 'package:flutter_twitter/widgets/user_profile_image.dart';
 import 'package:provider/src/provider.dart';
 
 class PostView extends StatelessWidget {

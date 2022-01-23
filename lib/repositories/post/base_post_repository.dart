@@ -1,4 +1,4 @@
-import 'package:megaspice/models/models.dart';
+import 'package:flutter_twitter/models/models.dart';
 
 abstract class BasePostRepo {
   Future<void> createPost({

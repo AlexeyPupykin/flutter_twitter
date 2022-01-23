@@ -7,7 +7,7 @@ extension DateTimeExtension on DateTime {
     if (currentDate.difference(this).inDays > 1) {
       return DateFormat.yMMMd().format(this);
     }
-    return timeAgo.format(this, locale: 'ru');
+    return timeAgo.format(this);
   }
 
   int calculateAgeExt() {

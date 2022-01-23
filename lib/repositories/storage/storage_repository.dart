@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:megaspice/repositories/repositories.dart';
+import 'package:flutter_twitter/repositories/repositories.dart';
 import 'package:uuid/uuid.dart';
 
 class StorageRepo extends BaseStorageRepo {
