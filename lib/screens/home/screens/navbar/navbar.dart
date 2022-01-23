@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/navbar_cubit.dart';
 
 import 'widgets/widgets.dart';
 

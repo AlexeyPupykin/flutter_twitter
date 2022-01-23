@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'NavBarState.dart';
+part 'navbar_state.dart';
 
-part 'NavBarItem.dart';
+part 'navbar_item.dart';
 
 class NavBarCubit extends Cubit<NavBarState> {
   NavBarCubit()

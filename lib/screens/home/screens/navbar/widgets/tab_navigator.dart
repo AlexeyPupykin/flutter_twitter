@@ -10,7 +10,7 @@ import 'package:flutter_twitter/repositories/repositories.dart';
 import 'package:flutter_twitter/screens/auth/login/login_screen.dart';
 import 'package:flutter_twitter/screens/home/screens/create_post/cubit/create_post_cubit.dart';
 import 'package:flutter_twitter/screens/home/screens/feed/bloc/feed_bloc.dart';
-import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/navbar_cubit.dart';
 import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
 
 import '../../screens.dart';

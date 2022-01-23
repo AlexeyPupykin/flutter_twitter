@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_twitter/blocs/auth_bloc/auth_bloc.dart';
 import 'package:flutter_twitter/cubit/cubits.dart';
+import 'package:flutter_twitter/screens/home/screens/feed/widgets/bottom_loader.dart';
 import 'package:flutter_twitter/widgets/widgets.dart';
 
 import 'bloc/feed_bloc.dart';
@@ -47,7 +48,9 @@ class _FeedScreenState extends State<FeedScreen> {
             builder: (context) =>
                 ErrorDialog(message: feedState.failure.message),
           );
-        } else if (feedState.status == FeedStatus.paginating) {}
+        } else if (feedState.status == FeedStatus.paginating) {
+          // BotToast.showText(text: "Загрузка...");
+        }
       },
       builder: (context, feedState) {
         return Scaffold(

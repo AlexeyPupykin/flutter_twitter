@@ -1,4 +1,4 @@
-part of 'NavBarCubit.dart';
+part of 'navbar_cubit.dart';
 
 class NavBarState extends Equatable {
   final NavBarItem selectedItem;

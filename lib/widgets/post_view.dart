@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/extensions/datetime_extensions.dart';
 import 'package:flutter_twitter/models/models.dart';
-import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/navbar_cubit.dart';
 import 'package:flutter_twitter/screens/home/screens/profile/profile_screen.dart';
 import 'package:flutter_twitter/screens/home/screens/screens.dart';
 import 'package:flutter_twitter/widgets/user_profile_image.dart';

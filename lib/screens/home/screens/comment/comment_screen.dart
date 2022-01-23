@@ -9,7 +9,7 @@ import 'package:flutter_twitter/cubit/cubits.dart';
 import 'package:flutter_twitter/extensions/datetime_extensions.dart';
 import 'package:flutter_twitter/models/models.dart';
 import 'package:flutter_twitter/repositories/repositories.dart';
-import 'package:flutter_twitter/screens/home/screens/navbar/cubit/NavBarCubit.dart';
+import 'package:flutter_twitter/screens/home/screens/navbar/cubit/navbar_cubit.dart';
 import 'package:flutter_twitter/widgets/widgets.dart';
 
 import '../screens.dart';
@@ -103,6 +103,7 @@ class _CommentScreenState extends State<CommentScreen> {
           child: _buildCommentBottomSheet(commentState),
         ),
         body: Container(
+          padding: EdgeInsets.only(bottom: 80),
           color: Colors.black,
           child: CustomScrollView(
             slivers: [
@@ -140,77 +141,84 @@ class _CommentScreenState extends State<CommentScreen> {
   }
 
   Widget _buildComments(CommentState state) {
-    return state.status == CommentStatus.loading
-        ? Center(child: const CircularProgressIndicator())
-        : Container(
-            child: SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final comment = state.commentList[index];
-                return ListTile(
-                  leading: GestureDetector(
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      ProfileScreen.routeName,
-                      arguments: ProfileScreenArgs(userId: comment!.author.uid),
-                    ),
-                    child: UserProfileImage(
-                      radius: 15,
-                      profileImageURL: comment!.author.photo!,
-                    ),
-                  ),
-                  title: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: comment.author.username,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 18.0),
+    return state.commentList.length == 0
+        ? Container(
+            child: SliverPadding(
+            padding: EdgeInsets.zero,
+          ))
+        : state.status == CommentStatus.loading
+            ? Center(child: const CircularProgressIndicator())
+            : Container(
+                child: SliverList(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final comment = state.commentList[index];
+                    return ListTile(
+                      leading: GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          ProfileScreen.routeName,
+                          arguments:
+                              ProfileScreenArgs(userId: comment!.author.uid),
                         ),
-                        const TextSpan(text: " "),
+                        child: UserProfileImage(
+                          radius: 15,
+                          profileImageURL: comment!.author.photo!,
+                        ),
+                      ),
+                      title: Text.rich(
                         TextSpan(
-                            text: comment.content,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 18.0)),
-                      ],
-                    ),
-                  ),
-                  subtitle: Text(
-                    '${comment.dateTime.timeAgoExt()}',
-                    style: TextStyle(
-                      color: AppColors.greyColor,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  trailing: context.read<AuthBloc>().state.user.uid ==
-                              comment.author.uid ||
-                          state.post!.author.uid ==
-                              context.read<AuthBloc>().state.user.uid
-                      ? IconButton(
-                          constraints: BoxConstraints(maxHeight: 18),
-                          padding: new EdgeInsets.all(0),
-                          iconSize: 18,
-                          icon: Icon(
-                            FontAwesomeIcons.trashAlt,
-                            color: state.status == CommentStatus.submitting
-                                ? Colors.white38
-                                : Colors.white,
-                          ),
-                          onPressed: () {
-                            context.read<CommentBloc>().add(
-                                  DeleteCommentEvent(
-                                      post: state.post!,
-                                      comment: comment,
-                                      previousComment: index == 0
-                                          ? null
-                                          : state.commentList.last),
-                                );
-                          },
-                        )
-                      : null,
-                );
-              }, childCount: state.comments),
-            ),
-          );
+                          children: [
+                            TextSpan(
+                              text: comment.author.username,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 18.0),
+                            ),
+                            const TextSpan(text: " "),
+                            TextSpan(
+                                text: comment.content,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18.0)),
+                          ],
+                        ),
+                      ),
+                      subtitle: Text(
+                        '${comment.dateTime.timeAgoExt()}',
+                        style: TextStyle(
+                          color: AppColors.greyColor,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      trailing: context.read<AuthBloc>().state.user.uid ==
+                                  comment.author.uid ||
+                              state.post!.author.uid ==
+                                  context.read<AuthBloc>().state.user.uid
+                          ? IconButton(
+                              constraints: BoxConstraints(maxHeight: 18),
+                              padding: new EdgeInsets.all(0),
+                              iconSize: 18,
+                              icon: Icon(
+                                FontAwesomeIcons.trashAlt,
+                                color: state.status == CommentStatus.submitting
+                                    ? Colors.white38
+                                    : Colors.white,
+                              ),
+                              onPressed: () {
+                                context.read<CommentBloc>().add(
+                                      DeleteCommentEvent(
+                                          post: state.post!,
+                                          comment: comment,
+                                          previousComment: index == 0
+                                              ? null
+                                              : state.commentList.last),
+                                    );
+                              },
+                            )
+                          : null,
+                    );
+                  }, childCount: state.comments),
+                ),
+              );
   }
 
   Widget _buildCommentBottomSheet(CommentState state) {
