@@ -153,6 +153,13 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
         _commentPostCubit.updatePostComments(
             comments: comments, commentsCount: commentsCount);
 
+        final likedPostIds = await _postRepo.getLikedPostIds(
+          userId: _authBloc.state.user.uid,
+          posts: postListPaginated,
+        );
+        _likePostCubit.updateLikedPosts(
+            postIds: likedPostIds, postsLikes: postsLikes);
+
         final updatedPostList = List<PostModel?>.from(state.posts);
 
         for (var post in postListPaginated) {
@@ -161,13 +168,6 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
             updatedPostList.add(post);
           }
         }
-
-        final likedPostIds = await _postRepo.getLikedPostIds(
-          userId: _authBloc.state.user.uid,
-          posts: postListPaginated,
-        );
-        _likePostCubit.updateLikedPosts(
-            postIds: likedPostIds, postsLikes: postsLikes);
 
         emit(state.copyWith(
             posts: updatedPostList,

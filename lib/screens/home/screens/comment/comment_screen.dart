@@ -103,7 +103,10 @@ class _CommentScreenState extends State<CommentScreen> {
           child: _buildCommentBottomSheet(commentState),
         ),
         body: Container(
-          padding: EdgeInsets.only(bottom: 80),
+          padding: context.read<AuthBloc>().state.status ==
+                  AuthStatus.unauthenticated
+              ? EdgeInsets.only(bottom: 0)
+              : EdgeInsets.only(bottom: 80),
           color: Colors.black,
           child: CustomScrollView(
             slivers: [

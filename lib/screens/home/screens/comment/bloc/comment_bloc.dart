@@ -151,6 +151,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
 
       emit(state.copyWith(
         status: CommentStatus.loaded,
+        comments: state.comments + 1,
       ));
     } on FirebaseException catch (e) {
       emit(state.copyWith(
@@ -202,6 +203,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
 
       emit(state.copyWith(
         status: CommentStatus.loaded,
+        comments: state.comments - 1,
       ));
     } on FirebaseException catch (e) {
       emit(state.copyWith(

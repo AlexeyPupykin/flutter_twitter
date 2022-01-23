@@ -158,8 +158,14 @@ class PostView extends StatelessWidget {
       onDoubleTap: onLike,
       child: CachedNetworkImage(
         width: double.infinity,
+        height: MediaQuery.of(context).size.width,
         imageUrl: post.imageUrl,
         fit: BoxFit.fill,
+        placeholder: (context, url) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
