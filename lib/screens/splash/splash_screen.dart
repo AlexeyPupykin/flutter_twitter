@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_twitter/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/screens/home/screens/navbar/navbar.dart';
 import 'package:flutter_twitter/screens/onboarding/onboarding_screen.dart';
 
@@ -30,7 +31,12 @@ class SplashScreen extends StatelessWidget {
         },
         child: Scaffold(
           body: Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: AppColors.liteGreenColor,
+              valueColor:
+                  new AlwaysStoppedAnimation<Color>(AppColors.liteGreenColor),
+              backgroundColor: AppColors.darkGreenColor,
+            ),
           ),
         ),
       ),

@@ -313,7 +313,6 @@ class PostRepo extends BasePostRepo {
           .collection(FirebaseConstants.userPosts)
           .orderBy("dateTime", descending: true)
           .limit(FirebaseConstants.postToLoad)
-          .limit(FirebaseConstants.postToLoad)
           .snapshots()
           .map(
             (querySnap) => querySnap.docs

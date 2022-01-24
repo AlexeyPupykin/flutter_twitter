@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_twitter/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 import 'package:flutter_twitter/cubit/cubits.dart';
 import 'package:flutter_twitter/widgets/widgets.dart';
 
@@ -65,6 +66,13 @@ class _FeedScreenState extends State<FeedScreen> {
                     Icons.refresh,
                   ),
                 ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.search_rounded,
+                ),
+                iconSize: 32,
+              ),
             ],
           ),
           body: _buildBody(feedState),
@@ -76,8 +84,13 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget _buildBody(FeedState feedState) {
     switch (feedState.status) {
       case FeedStatus.loading:
-        return const Center(
-          child: CircularProgressIndicator(),
+        return Center(
+          child: CircularProgressIndicator(
+            color: AppColors.liteGreenColor,
+            valueColor:
+                new AlwaysStoppedAnimation<Color>(AppColors.liteGreenColor),
+            backgroundColor: AppColors.darkGreenColor,
+          ),
         );
 
       default:

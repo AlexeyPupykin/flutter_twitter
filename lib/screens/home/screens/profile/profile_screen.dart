@@ -99,7 +99,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildBody(ProfileState profileState) {
     switch (profileState.status) {
       case ProfileStatus.loading:
-        return Scaffold(body: Center(child: CircularProgressIndicator()));
+        return Scaffold(
+            body: Center(
+                child: CircularProgressIndicator(
+          color: AppColors.liteGreenColor,
+          valueColor:
+              new AlwaysStoppedAnimation<Color>(AppColors.liteGreenColor),
+          backgroundColor: AppColors.darkGreenColor,
+        )));
       default:
         return Scaffold(
           appBar: AppBar(

@@ -88,7 +88,11 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
         _likePostCubit.updateLikedPosts(
             postIds: likedPostIds, postsLikes: postsLikes);
 
-        emit(state.copyWith(posts: postList, status: FeedStatus.loaded));
+        emit(state.copyWith(
+          posts: postList,
+          status: FeedStatus.loaded,
+          // guestLastPostId: postList.last!.id,
+        ));
       } else {
         final postList = await _postRepo.getGuestFeed();
 
@@ -134,7 +138,8 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
         if (postListPaginated.length == 0) {
           postListPaginated.addAll(
               await _postRepo.getGuestFeed(lastPostId: state.guestLastPostId));
-          if (postListPaginated.last != null) {
+          if (postListPaginated.length == 0) {
+          } else {
             lastPostId = postListPaginated.last!.id;
           }
         }

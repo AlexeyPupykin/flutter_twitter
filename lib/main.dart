@@ -127,10 +127,14 @@ class MyApp extends StatelessWidget {
           title: "flutter_twitter",
           themeMode: ThemeMode.dark,
           theme: ThemeData(
+            scaffoldBackgroundColor: AppColors.mainBackground,
+            shadowColor: AppColors.liteGreenColor,
+            dialogBackgroundColor: AppColors.liteGreenColor,
+            selectedRowColor: AppColors.liteGreenColor,
             backgroundColor: AppColors.mainBackground,
             colorScheme: ColorScheme.highContrastDark(),
             appBarTheme: AppBarTheme(
-              toolbarHeight: 68.0,
+              toolbarHeight: 72.0,
               elevation: 2.0,
               color: AppColors.darkGreenColor,
               centerTitle: true,

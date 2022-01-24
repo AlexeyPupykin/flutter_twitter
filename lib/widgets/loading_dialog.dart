@@ -12,7 +12,12 @@ class LoadingDialog extends StatelessWidget {
       backgroundColor: AppColors.mainBackground,
       content: Row(
         children: [
-          CircularProgressIndicator(),
+          CircularProgressIndicator(
+            color: AppColors.liteGreenColor,
+            valueColor:
+                new AlwaysStoppedAnimation<Color>(AppColors.liteGreenColor),
+            backgroundColor: AppColors.darkGreenColor,
+          ),
           const SizedBox(
             width: 20.0,
           ),

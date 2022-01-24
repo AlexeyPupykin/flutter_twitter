@@ -218,8 +218,13 @@ class PostView extends StatelessWidget {
         imageUrl: post.imageUrl,
         fit: BoxFit.fill,
         placeholder: (context, url) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: CircularProgressIndicator(
+              color: AppColors.liteGreenColor,
+              valueColor:
+                  new AlwaysStoppedAnimation<Color>(AppColors.liteGreenColor),
+              backgroundColor: AppColors.darkGreenColor,
+            ),
           );
         },
       ),

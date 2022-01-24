@@ -254,7 +254,12 @@ class _SignUpButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator()
+            ? CircularProgressIndicator(
+                color: AppColors.liteGreenColor,
+                valueColor:
+                    new AlwaysStoppedAnimation<Color>(AppColors.liteGreenColor),
+                backgroundColor: AppColors.darkGreenColor,
+              )
             : SizedBox(
                 width: double.infinity,
                 height: 52.0,

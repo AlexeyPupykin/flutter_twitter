@@ -112,7 +112,12 @@ class _CommentScreenState extends State<CommentScreen> {
             slivers: [
               SliverToBoxAdapter(
                   child: commentState.post == null
-                      ? CircularProgressIndicator()
+                      ? CircularProgressIndicator(
+                          color: AppColors.liteGreenColor,
+                          valueColor: new AlwaysStoppedAnimation<Color>(
+                              AppColors.liteGreenColor),
+                          backgroundColor: AppColors.darkGreenColor,
+                        )
                       : PostView(
                           isLiked: commentState.isLiked,
                           post: commentState.post!,
@@ -150,7 +155,13 @@ class _CommentScreenState extends State<CommentScreen> {
             padding: EdgeInsets.zero,
           ))
         : state.status == CommentStatus.loading
-            ? Center(child: const CircularProgressIndicator())
+            ? Center(
+                child: CircularProgressIndicator(
+                color: AppColors.liteGreenColor,
+                valueColor:
+                    new AlwaysStoppedAnimation<Color>(AppColors.liteGreenColor),
+                backgroundColor: AppColors.darkGreenColor,
+              ))
             : Container(
                 child: SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
