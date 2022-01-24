@@ -95,6 +95,8 @@ class _FeedScreenState extends State<FeedScreen> {
 
       default:
         return RefreshIndicator(
+          color: AppColors.liteGreenColor,
+          backgroundColor: AppColors.darkGreenColor,
           onRefresh: () async {
             await Future.delayed(
               Duration(milliseconds: 300),
@@ -153,7 +155,7 @@ class _FeedScreenState extends State<FeedScreen> {
                             },
                             continueOnPressed: () {
                               Navigator.of(dialogContext).pop();
-                              dialogContext
+                              context
                                   .read<FeedBloc>()
                                   .add(FeedDeletePostEvent(post: post));
                             });

@@ -491,6 +491,38 @@ class PostRepo extends BasePostRepo {
         .doc(post.id)
         .update({"likes": FieldValue.increment(1)});
 
+    // doesnt work
+    // _firebaseFirestore
+    //     .collection(FirebaseConstants.feeds)
+    //     .doc(post.author.uid)
+    //     .collection(FirebaseConstants.userFeed)
+    //     .doc(post.id)
+    //     .update({"likes": FieldValue.increment(1)});
+
+    final userFollowerRef = await _firebaseFirestore
+        .collection(FirebaseConstants.followers)
+        .doc(post.author.uid)
+        .collection(FirebaseConstants.userFollowers)
+        .get();
+
+    userFollowerRef.docs.forEach((element) {
+      if (element.exists) {
+        _firebaseFirestore
+            .collection(FirebaseConstants.feeds)
+            .doc(element.id)
+            .collection(FirebaseConstants.userFeed)
+            .doc(post.id)
+            .update({"likes": FieldValue.increment(1)});
+      }
+    });
+
+    _firebaseFirestore
+        .collection(FirebaseConstants.feeds)
+        .doc(FirebaseConstants.guestFeed)
+        .collection(FirebaseConstants.userFeed)
+        .doc(post.id)
+        .update({"likes": FieldValue.increment(1)});
+
     _firebaseFirestore
         .collection(FirebaseConstants.likes)
         .doc(post.id)
@@ -503,11 +535,35 @@ class PostRepo extends BasePostRepo {
   void deleteLike({
     required PostModel post,
     required String userId,
-  }) {
+  }) async {
     _firebaseFirestore
         .collection(FirebaseConstants.posts)
         .doc(post.author.uid)
         .collection(FirebaseConstants.userPosts)
+        .doc(post.id)
+        .update({"likes": FieldValue.increment(-1)});
+
+    final userFollowerRef = await _firebaseFirestore
+        .collection(FirebaseConstants.followers)
+        .doc(post.author.uid)
+        .collection(FirebaseConstants.userFollowers)
+        .get();
+
+    userFollowerRef.docs.forEach((element) {
+      if (element.exists) {
+        _firebaseFirestore
+            .collection(FirebaseConstants.feeds)
+            .doc(element.id)
+            .collection(FirebaseConstants.userFeed)
+            .doc(post.id)
+            .update({"likes": FieldValue.increment(-1)});
+      }
+    });
+
+    _firebaseFirestore
+        .collection(FirebaseConstants.feeds)
+        .doc(FirebaseConstants.guestFeed)
+        .collection(FirebaseConstants.userFeed)
         .doc(post.id)
         .update({"likes": FieldValue.increment(-1)});
 

@@ -34,7 +34,7 @@ class CreatePostScreen extends StatelessWidget {
             _formKey.currentState!.reset();
             context.read<CreatePostCubit>().reset();
 
-            BotToast.showText(text: "Пост создан успешно");
+            BotToast.showText(text: "Пост успешно создан");
           } else if (state.status == CreatePostStatus.submitting) {
             showDialog(
               context: context,

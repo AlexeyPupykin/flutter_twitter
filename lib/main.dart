@@ -13,6 +13,7 @@ import 'package:flutter_twitter/screens/home/screens/create_post/cubit/create_po
 import 'package:flutter_twitter/screens/home/screens/profile/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:flutter_twitter/screens/home/screens/profile/profile_bloc/profile_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timeago/timeago.dart' as timeAgo;
 
 import 'blocs/blocs.dart';
 import 'config/custom_router.dart';
@@ -27,6 +28,7 @@ void main() async {
   await authRepo.user.first;
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool? onboardingFinished = prefs.getBool("onboardingFinished");
+  timeAgo.setLocaleMessages('ru', timeAgo.RuMessages());
 
   BlocOverrides.runZoned(
     () => runApp(MyApp(
@@ -128,7 +130,7 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.dark,
           theme: ThemeData(
             scaffoldBackgroundColor: AppColors.mainBackground,
-            shadowColor: AppColors.liteGreenColor,
+            // shadowColor: AppColors.liteGreenColor,
             dialogBackgroundColor: AppColors.liteGreenColor,
             selectedRowColor: AppColors.liteGreenColor,
             backgroundColor: AppColors.mainBackground,
