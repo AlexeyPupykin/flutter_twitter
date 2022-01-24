@@ -118,7 +118,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         builder: (context) =>
                             _buildProfileModal(context, profileState));
                   },
-                  icon: Icon(FontAwesomeIcons.bars),
+                  icon: Icon(
+                    FontAwesomeIcons.bars,
+                    size: 24,
+                  ),
                 )
             ],
           ),

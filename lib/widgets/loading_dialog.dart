@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_twitter/common/app_colors.dart';
 
 class LoadingDialog extends StatelessWidget {
   final String loadingMessage;
@@ -8,6 +9,7 @@ class LoadingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: AppColors.mainBackground,
       content: Row(
         children: [
           CircularProgressIndicator(),

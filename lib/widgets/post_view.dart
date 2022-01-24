@@ -153,6 +153,62 @@ class PostView extends StatelessWidget {
     );
   }
 
+  Widget _buildShareModal(BuildContext context) {
+    return Container(
+      color: AppColors.darkGreenColor,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Скопировать ссылку",
+                    style: TextStyle(
+                      color: AppColors.textMainColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              thickness: 1,
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Поделиться",
+                    style: TextStyle(
+                      color: AppColors.textMainColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildContent(BuildContext context) {
     return GestureDetector(
       onDoubleTap: onLike,
@@ -226,9 +282,17 @@ class PostView extends StatelessWidget {
               ),
             ],
           ),
-          Icon(
-            Icons.share_outlined,
-            size: 35,
+          IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  context: context,
+                  builder: (context) => _buildShareModal(context));
+            },
+            icon: Icon(Icons.share_outlined),
+            iconSize: 35,
           )
         ],
       ),
